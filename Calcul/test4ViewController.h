@@ -24,6 +24,7 @@
     NSArray * pickerArray;
     
     double prob;
+    double moyA, moyB, ecartA, ecartB, effectA, effectB;
 }
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *clearBtn;

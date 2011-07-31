@@ -8,6 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
-@interface test5ViewController : UIViewController
+@interface test5ViewController : UIViewController{
+    
+    
+    IBOutlet UITextField *seuilText;
+    IBOutlet UITextField *pourAText;
+    IBOutlet UITextField *pourBText;
+    IBOutlet UITextField *effectAText;
+    IBOutlet UITextField *effectBText;
+    
+    IBOutlet UILabel *resultChi2Label;
+    IBOutlet UILabel *resultNorLabel;
+    
+    IBOutlet UIBarButtonItem *clearBtn;
+
+    UIPickerView * picker;
+    NSArray * pickerArray;
+    
+    double prob;
+    double pourA, pourB, effetA, effetB;
+}
 
 @end

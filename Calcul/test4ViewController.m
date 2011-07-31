@@ -12,6 +12,66 @@
 
 @synthesize clearBtn;
 
+- (double) normInv {
+    double x, p, c0, c1, c2, d1, d2, d3, t, q;
+    double result;
+    
+    q = (1.0 - prob/100) / 2;
+    
+    
+    if (q == 0.5) {
+        result = 0;
+    }else{
+        q = 1.0 - q;
+        
+        if ( (q>0) && (q<0.5) ){
+            p = q;
+        }
+        else {
+            if (q == 1) {
+                p = 1-0.999999;
+            }
+            else{
+                p = 1.0 - q;
+            }
+        }
+        
+        t = sqrt( log(1.0/(p*p)));
+        
+        c0 = 2.515517;
+        c1 = 0.802853;
+        c2 = 0.010328;
+        
+        d1 = 1.432788;
+        d2 = 0.189269;
+        d3 = 0.001308;
+        x = t - (c0 + c1 * t + c2 * (t * t)) / (1.0 + d1 * t + d2 * (t * t) + d3 * (t * t * t));
+        
+        if (q>0.5) x = -1.0 * x;
+    }
+    
+    return (x * 1) + 0;
+}
+
+- (void) calcul{
+//    double norme = [self normInv];
+//    norme = norme * norme;
+//    
+//    double results = sqrt(norme*(ecarttype*ecarttype)/(effect*effect));
+//    [intervalle setText:[NSString stringWithFormat:@"%2.3f", results]];
+//    [soit setText:[NSString stringWithFormat:@"%2.1f -- %2.1f", (moyen - results), (moyen + results)]];
+    double norme = [self normInv];
+    norme = abs(norme * norme);
+    
+    if (abs(moyA-moyB)/sqrt((ecartA * ecartA)/effectA + (ecartB * ecartB)/effectB)>norme){
+        [resultLabel setText:@"Significatif"];
+    }else{
+        [resultLabel setText:@"Ecart non significatif"];
+    }
+}
+
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -205,9 +265,12 @@
         if ([ecartTypeTextB isFirstResponder]) [ecartTypeTextB resignFirstResponder];
         if ([effectifTextA isFirstResponder]) [effectifTextA resignFirstResponder];
         if ([effectifTextB isFirstResponder]) [effectifTextB resignFirstResponder];        
-        moyen = [moyenne.text floatValue];
-        ecarttype = [ecartType.text floatValue];
-        effect = [effectif.text floatValue];
+        moyA = [moyTextA.text floatValue];
+        moyB = [moyTextB.text floatValue];
+        ecartA = [ecartTypeTextA.text floatValue];
+        ecartB = [ecartTypeTextB.text floatValue];
+        effectA = [effectifTextA.text floatValue];
+        effectB = [effectifTextB.text floatValue];
         [self calcul];
 	}
 }
@@ -237,21 +300,26 @@
 
 #pragma mark - uibarbuttonitem actions
 - (void) clearBtnClicked{
-    [seuil setText:@"95%"];
-    [moyenne setText:@"5.1"];
-    [ecartType setText:@"1.0"];
-    [effectif setText:@"150"];
-    [intervalle setText:@""];
-    [soit setText:@""];
+    [seuilText setText:@"95%"];
+    [moyTextA setText:@"5.1"];
+    [moyTextB setText:@"5.1"];    
+    [ecartTypeTextA setText:@"1.0"];
+    [ecartTypeTextB setText:@"1.0"];    
+    [effectifTextA setText:@"150"];
+    [effectifTextB setText:@"150"];    
+    [resultLabel setText:@""];
     [self initText];
 }
 
 
 - (void) initText{
     prob = 95;
-    moyen = 5.1;
-    ecarttype = 1.0;
-    effect = 150;
+    moyA = 5.1;
+    moyB = 5.1;
+    ecartA = 1.0;
+    ecartB = 1.0;
+    effectA = 150;
+    effectB = 150;
     [self calcul];
 }
 
