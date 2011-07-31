@@ -10,8 +10,26 @@
 
 @interface test4ViewController : UIViewController {
     UIBarButtonItem *clearBtn;
+    IBOutlet UITextField *seuilText;
+    IBOutlet UITextField *moyTextA;
+    IBOutlet UITextField *moyTextB;
+    IBOutlet UITextField *ecartTypeTextA;
+    IBOutlet UITextField *ecartTypeTextB;
+    IBOutlet UITextField *effectifTextA;
+    IBOutlet UITextField *effectifTextB;
+
+    IBOutlet UILabel *resultLabel;
+
+    UIPickerView * picker;
+    NSArray * pickerArray;
+    
+    double prob;
 }
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *clearBtn;
+
+
+- (IBAction)clearBtnClicked:(id)sender;
+
 
 @end
