@@ -23,7 +23,7 @@
 
      
 - (void)getIntoMainMenu{
-    UINavigationController *navController = [[UINavigationController alloc]init];
+//    UINavigationController *navController = [[UINavigationController alloc]init];
 
     //Create the view for the tests
     test1ViewController * test1View = [[test1ViewController alloc]init];
@@ -35,7 +35,6 @@
     [test2View setTitle:@"Test 2 Précision en %"];
     item = [[UITabBarItem alloc] initWithTitle:@"test2" image:[UIImage imageNamed:@"02-redo.png"] tag:1];
     test2View.tabBarItem = item;
-
   
     
     test3ViewController * test3View = [[test3ViewController alloc] init];
@@ -55,10 +54,10 @@
     test5View.tabBarItem = item;
     
     
-    //Create the page sommaire
-    MainMenuController *mainMenuCtl = [[MainMenuController alloc]initWithStyle:UITableViewStyleGrouped];
-    [mainMenuCtl setTitle:@"HOME"];
-    [mainMenuCtl setTest1:test1View];
+//    //Create the page sommaire
+//    MainMenuController *mainMenuCtl = [[MainMenuController alloc]initWithStyle:UITableViewStyleGrouped];
+//    [mainMenuCtl setTitle:@"HOME"];
+//    [mainMenuCtl setTest1:test1View];
     
     //associer;
     
@@ -73,9 +72,9 @@
     //  [nav release];
     [test1View release];
     [test2View release];
-//    [test3View release];
-//    [test4View release];
-//    [test5View release];
+    [test3View release];
+    [test4View release];
+    [test5View release];
     [item release];
     [self.window addSubview:tabBarController.view];
 }
