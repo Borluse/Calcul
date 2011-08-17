@@ -18,8 +18,12 @@
     IBOutlet UITextField *effectBText;
     
     IBOutlet UILabel *resultChi2Label;
+
     IBOutlet UILabel *resultNorLabel;
-    
+
+    IBOutlet UITextField *chi2Text;    
+    IBOutlet UITextField *loiNormalText;
+
     IBOutlet UIBarButtonItem *clearBtn;
 
     UIPickerView * picker;

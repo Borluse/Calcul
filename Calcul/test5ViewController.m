@@ -11,7 +11,7 @@
 @implementation test5ViewController
 
 
-- (void) calcule{
+- (void) calcul{
     double p = (1-prob/100)/2;
     double n = normInv(p);
     double results = abs(pourA - pourB)/sqrt(pourA * (1-pourA)/effetA +
@@ -21,6 +21,27 @@
     }else{
         resultNorLabel.text = NON_SIGNIF;
     }
+    
+//    double powA = pow((abs((effetA*pourA)-((effetA)*((effetA*pourA)+(effetB*pourB))/(effetA+effetB)))-0.5), 2);
+//    double divA = ((effetA)*((effetA*pourA)+(effetB*pourB))/(effetA+effetB));
+//    double powB = pow((abs((effetB*pourB)-((effetB)*((effetA*pourA)+(effetB*pourB))/(effetA+effetB)))-0.5), 2);
+//    double divB = ((effetB)*((effetA*pourA)+(effetB*pourB))/(effetA+effetB));
+//    double powC = pow((abs(((1-pourA)*effetA)-((effetA)*(((1-pourA)*effetA)+((1-pourB)*effetB))/(effetA+effetB)))-0.5),2);
+//    double divC = ((effetA)*(((1-pourA)*effetA)+((1-pourB)*effetB))/(effetA+effetB));
+//    double powD = pow((abs(((1-pourB)*effetB)-((effetB)*(((1-pourA)*effetA)+((1-pourB)*effetB))/(effetA+effetB)))-0.5),2);
+//    double divD = ((effetB)*(((1-pourA)*effetA)+((1-pourB)*effetB))/(effetA+effetB));
+//    
+//    double resultChi2 = powA / divA + powB / divB + powC / divC + powD / divD;
+    double pourAS = pourA / 100;
+    double pourBS = pourB / 100;
+    double resultChi2 = pow((abs((pourAS*effetA)-((effetA)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB)))-0.5),2)/((effetA)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB))+pow((abs((pourBS*effetB)-((effetB)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB)))-0.5),2)/((effetB)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB))+pow((abs(((1-pourAS)*effetA)-((effetA)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB)))-0.5),2)/((effetA)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB))+pow((abs(((1-pourBS)*effetB)-((effetB)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB)))-0.5),2)/((effetB)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB));
+    [chi2Text setText:[NSString stringWithFormat:@"%3.2f", resultChi2]];
+    double resultNormal = abs(pourBS-pourAS)/pow(((pourAS*(1-pourAS)/(effetA-1))+(pourBS*(1-pourBS)/(effetB-1))),0.5);
+    
+    [loiNormalText setText:[NSString stringWithFormat:@"%3.2f", resultNormal]];
+    
+    
+    
 }
 
 
@@ -76,6 +97,12 @@
     resultNorLabel = nil;
     [clearBtn release];
     clearBtn = nil;
+    [resultNorLabel release];
+    resultNorLabel = nil;
+    [chi2Text release];
+    chi2Text = nil;
+    [loiNormalText release];
+    loiNormalText = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -96,6 +123,9 @@
     [resultChi2Label release];
     [resultNorLabel release];
     [clearBtn release];
+    [resultNorLabel release];
+    [chi2Text release];
+    [loiNormalText release];
     [super dealloc];
 }
 
