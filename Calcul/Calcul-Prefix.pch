@@ -12,3 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+#define PROP(x) ((1-x/100)/2)
+#define SIGNIF @"Oui, significatif"
+#define NON_SIGNIF @"Non significatif"

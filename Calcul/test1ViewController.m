@@ -7,60 +7,22 @@
 //
 
 #import "test1ViewController.h"
-
+#import "normsinv.h"
 @implementation test1ViewController
 @synthesize resultat;
 
 #pragma mark - calculs
 
-- (double) normInv {
-    double x, p, c0, c1, c2, d1, d2, d3, t, q;
-    double result;
-    
-    q = (1.0 - prob/100) / 2;
-    
-    
-    if (q == 0.5) {
-        result = 0;
-    }else{
-        q = 1.0 - q;
-        
-        if ( (q>0) && (q<0.5) ){
-            p = q;
-        }
-        else {
-            if (q == 1) {
-                p = 1-0.999999;
-            }
-            else{
-                p = 1.0 - q;
-            }
-        }
-        
-        t = sqrt( log(1.0/(p*p)));
-        
-        c0 = 2.515517;
-        c1 = 0.802853;
-        c2 = 0.010328;
-        
-        d1 = 1.432788;
-        d2 = 0.189269;
-        d3 = 0.001308;
-        x = t - (c0 + c1 * t + c2 * (t * t)) / (1.0 + d1 * t + d2 * (t * t) + d3 * (t * t * t));
-        
-        if (q>0.5) x = -1.0 * x;
-    }
-    
-    return (x * 1) + 0;
-}
+
 
 - (void) calcule{
-    double norme = [self normInv];
-    norme = norme * norme;
-    
-    
-    double results = sqrt(norme*(pourcentage/100*(1.0-pourcentage/100))/(effect*effect));
-    [resultat setText:[NSString stringWithFormat:@"%2.1f%%", results*100]];
+    double p = (1-niveauConfNum/100)/2;
+    double n = normInv(p);
+//    double n = [self normInv];
+    n = n*n;
+    double results = n*(0.5*(1-0.5))/(intervalleConfNum/100*intervalleConfNum/100);
+    if (results < 30) results = 30;
+    [resultat setText:[NSString stringWithFormat:@"%f", results]];
   //  [soitEntre setText:[NSString stringWithFormat:@"%2.1f%% -- %2.1f%%", (pourcentage/100 - results)*100, (pourcentage/100 + results)*100]];
     
 }
@@ -138,23 +100,12 @@
     picker.delegate = self;
     picker.dataSource = self;
     
-    switch (tag) {
-        case 0:
-            pickerArray = [[NSArray arrayWithObjects:@"80",@"85",@"90",@"95",@"99",nil]retain];
-            picker.tag = 100;
-            [picker selectRow:3 inComponent:0 animated:YES];
-            break;
-        case 1:
-            picker.tag = 101;
-            [picker selectRow:5 inComponent:0 animated:YES];
-            [picker selectRow:0 inComponent:1 animated:YES];
-            break;
-        default:
-            break;
-    }
+    pickerArray = [[NSArray arrayWithObjects:@"80",@"85",@"90",@"95",@"99",nil]retain];
+    picker.tag = 100;
+    [picker selectRow:3 inComponent:0 animated:YES];
     
     [actionSheet setBounds:CGRectMake(0, 0, 320, 400)];
-    //    [actionSheet addSubview:picker];
+
     [actionSheet addSubview:picker];
     [picker release];
     
@@ -170,71 +121,75 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-	NSString *returnStr;
-    switch (pickerView.tag) {
-        case 101:
-            if (component == 0){
-                returnStr = [NSString stringWithFormat:@"%d", row];
-            }
-            else{
-                returnStr = [NSString stringWithFormat:@"%d", row];
-            }
-            break;
-        default:
-            returnStr = [[pickerArray objectAtIndex:row] stringByAppendingString:@"%"];
-            break;
-    }
-	
-	return returnStr;
+//	NSString *returnStr;
+//    switch (pickerView.tag) {
+//        case 101:
+//            if (component == 0){
+//                returnStr = [NSString stringWithFormat:@"%d", row];
+//            }
+//            else{
+//                returnStr = [NSString stringWithFormat:@"%d", row];
+//            }
+//            break;
+//        default:
+//            returnStr = [[pickerArray objectAtIndex:row] stringByAppendingString:@"%"];
+//            break;
+//    }
+    
+	return [NSString stringWithFormat:@"%@%%",[pickerArray objectAtIndex:row]];
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-	switch (pickerView.tag) {
-        case 101:
-            if (component == 0)
-                return 101;
-            else return 10;
-            break;
-        default:
-            return [pickerArray count];
-            break;
-    }
+//	switch (pickerView.tag) {
+//        case 101:
+//            if (component == 0)
+//                return 101;
+//            else return 10;
+//            break;
+//        default:
+//            return [pickerArray count];
+//            break;
+//    }
+    return [pickerArray count];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    if (pickerView.tag == 101){
-        return 2;
-    }
-    else return 1;
+//    if (pickerView.tag == 101){
+//        return 2;
+//    }
+//    else return 1;
+    return 1;
 }
 
 #pragma mark - delegates for uipickerview
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    switch (pickerView.tag) {
-        case 100:
-            NSLog(@"niveau de conf");
-            niveauConf.text = [pickerArray objectAtIndex:row];
-            prob = [niveauConf.text intValue];
-            [self calcule];
-            break;
-        case 101:
-            NSLog(@"intervalle de conf");
-            if (component == 0){
-                integerPart = row;
-                
-            }
-            else {
-                demicalPart = row;
-            }
-            intervalleConf.text = [NSString stringWithFormat:@"%d.%d%%", integerPart, demicalPart];
-            pourcentage = [[NSString stringWithFormat:@"%d.%d", integerPart, demicalPart] floatValue];
-            [self calcule];
-            break;
-        default:
-            break;
-    }
+//    switch (pickerView.tag) {
+//        case 100:
+//            NSLog(@"niveau de conf");
+//            niveauConf.text = [pickerArray objectAtIndex:row];
+//            prob = [niveauConf.text intValue];
+//            [self calcule];
+//            break;
+//        case 101:
+//            NSLog(@"intervalle de conf");
+//            if (component == 0){
+//                integerPart = row;
+//                
+//            }
+//            else {
+//                demicalPart = row;
+//            }
+//            intervalleConf.text = [NSString stringWithFormat:@"%d.%d%%", integerPart, demicalPart];
+//            pourcentage = [[NSString stringWithFormat:@"%d.%d", integerPart, demicalPart] floatValue];
+//            [self calcule];
+//            break;
+//        default:
+//            break;
+//    }
+    niveauConf.text = [[pickerArray objectAtIndex:row] stringByAppendingString:@"%"];
+    niveauConfNum = [[pickerArray objectAtIndex:row] intValue];
 }
 
 
@@ -247,7 +202,8 @@
             break;
         case 1:
             NSLog(@"intervalleConf");
-            [self createPickerWithId:1];
+//            [self createPickerWithId:1];
+              return YES;
             break;
         case 2:
             NSLog(@"Taille de la population");
@@ -258,7 +214,7 @@
             break;
     }
     return NO;
-    return YES;
+  
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -286,8 +242,12 @@
 	for (UITouch *touch in touches){
 		if ([taillePop isFirstResponder]){
             [taillePop resignFirstResponder];
-            effect = [taillePop.text intValue];
+            taillePopNum = [taillePop.text intValue];
             [self calcule];
+        }
+        if ([intervalleConf isFirstResponder]){
+            [intervalleConf resignFirstResponder];
+            intervalleConfNum = [intervalleConf.text floatValue];
         }
 	}
     
@@ -309,9 +269,9 @@
 
 
 - (void) initTexts{
-    prob = 95;
-    pourcentage = 5;
-    effect = 150;
+    niveauConfNum = 95;
+    intervalleConfNum = 5;
+    taillePopNum = 150;
     [self calcule];
 }
 

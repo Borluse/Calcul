@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "normsinv.h"
 @interface test3ViewController : UIViewController{
     double prob;
     double pourcentage;

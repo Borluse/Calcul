@@ -11,7 +11,7 @@
 @interface test5ViewController : UIViewController{
     
     
-    IBOutlet UITextField *seuilText;
+    IBOutlet UITextField *niveauConfText;
     IBOutlet UITextField *pourAText;
     IBOutlet UITextField *pourBText;
     IBOutlet UITextField *effectAText;

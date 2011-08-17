@@ -10,6 +10,20 @@
 
 @implementation test5ViewController
 
+
+- (void) calcule{
+    double p = (1-prob/100)/2;
+    double n = normInv(p);
+    double results = abs(pourA - pourB)/sqrt(pourA * (1-pourA)/effetA +
+                                             pourB * (1-pourB)/effetB);
+    if (results > abs(n)){
+        resultNorLabel.text = SIGNIF;
+    }else{
+        resultNorLabel.text = NON_SIGNIF;
+    }
+}
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -46,8 +60,8 @@
 
 - (void)viewDidUnload
 {
-    [seuilText release];
-    seuilText = nil;
+    [niveauConfText release];
+    niveauConfText = nil;
     [pourAText release];
     pourAText = nil;
     [pourBText release];
@@ -74,7 +88,7 @@
 }
 
 - (void)dealloc {
-    [seuilText release];
+    [niveauConfText release];
     [pourAText release];
     [pourBText release];
     [effectAText release];
@@ -113,18 +127,12 @@
     picker.delegate = self;
     picker.dataSource = self;
     
-    switch (tag) {
-        case 0:
-            pickerArray = [[NSArray arrayWithObjects:@"80",@"85",@"90",@"95",@"99",nil]retain];
-            [picker selectRow:3 inComponent:0 animated:YES];
-            picker.tag = 100;
-            break;
-        default:
-            break;
-    }
+    pickerArray = [[NSArray arrayWithObjects:@"80",@"85",@"90",@"95",@"99",nil]retain];
+    picker.tag = 100;
+    [picker selectRow:3 inComponent:0 animated:YES];
     
     [actionSheet setBounds:CGRectMake(0, 0, 320, 400)];
-    //    [actionSheet addSubview:picker];
+    
     [actionSheet addSubview:picker];
     [picker release];
     
@@ -140,17 +148,7 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-	NSString *returnStr;
-    switch (pickerView.tag) {
-        case 101:
-            returnStr = [NSString stringWithFormat:@"%d%%",row+1];
-            break;
-        default:
-            returnStr = [[pickerArray objectAtIndex:row] stringByAppendingString:@"%%"];
-            break;
-    }
-	
-	return returnStr;
+    return [NSString stringWithFormat:@"%@%%",[pickerArray objectAtIndex:row]];
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -165,16 +163,8 @@
 
 #pragma mark - delegates for uipickerview
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    switch (pickerView.tag) {
-        case 100:
-            NSLog(@"Seuil");
-            seuilText.text = [pickerArray objectAtIndex:row];
-            prob = [seuilText.text intValue];
-            [self calcul];            
-            break;
-        default:
-            break;
-    }
+    niveauConfText.text = [[pickerArray objectAtIndex:row] stringByAppendingString:@"%"];
+    prob = [[pickerArray objectAtIndex:row] intValue];
 }
 
 
@@ -232,7 +222,7 @@
 
 #pragma mark - uibarbuttonitem actions
 - (void) clearBtnClicked{
-    [seuilText setText:@"95%"];
+    [niveauConfText setText:@"95%"];
     [pourAText setText:@"5.1"];
     [pourBText setText:@"5.1"];    
     [effectAText setText:@"150"];

@@ -29,6 +29,7 @@
 		6584549513DE11080019A9C7 /* test4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6584549413DE11080019A9C7 /* test4ViewController.m */; };
 		6584549813DE11150019A9C7 /* test5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6584549713DE11150019A9C7 /* test5ViewController.m */; };
 		65BE00DD138407F7003D52A0 /* test5ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65BE00DB138407F6003D52A0 /* test5ViewController.xib */; };
+		65DA320713EEB3AD00B8423C /* normsinv.c in Sources */ = {isa = PBXBuildFile; fileRef = 65DA320613EEB3AD00B8423C /* normsinv.c */; };
 		65F8CFDC1382889000AC8F1E /* 01-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F8CFD71382889000AC8F1E /* 01-refresh.png */; };
 		65F8CFDD1382889000AC8F1E /* 02-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F8CFD81382889000AC8F1E /* 02-redo.png */; };
 		65F8CFDE1382889000AC8F1E /* 03-loopback.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F8CFD91382889000AC8F1E /* 03-loopback.png */; };
@@ -71,6 +72,8 @@
 		6584549613DE11140019A9C7 /* test5ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test5ViewController.h; sourceTree = "<group>"; };
 		6584549713DE11150019A9C7 /* test5ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = test5ViewController.m; sourceTree = "<group>"; };
 		65BE00DB138407F6003D52A0 /* test5ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = test5ViewController.xib; sourceTree = "<group>"; };
+		65DA320413EEA40B00B8423C /* normsinv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = normsinv.h; sourceTree = "<group>"; };
+		65DA320613EEB3AD00B8423C /* normsinv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = normsinv.c; sourceTree = "<group>"; };
 		65F8CFD71382889000AC8F1E /* 01-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "01-refresh.png"; sourceTree = "<group>"; };
 		65F8CFD81382889000AC8F1E /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo.png"; sourceTree = "<group>"; };
 		65F8CFD91382889000AC8F1E /* 03-loopback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "03-loopback.png"; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 		653AFCE6134D103500685686 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				65DA320413EEA40B00B8423C /* normsinv.h */,
+				65DA320613EEB3AD00B8423C /* normsinv.c */,
 				653AFCF2134D130B00685686 /* ClassTest.h */,
 				653AFCF3134D130B00685686 /* ClassTest.m */,
 			);
@@ -301,6 +306,7 @@
 				6584549113DE0AB40019A9C7 /* test1ViewController.m in Sources */,
 				6584549513DE11080019A9C7 /* test4ViewController.m in Sources */,
 				6584549813DE11150019A9C7 /* test5ViewController.m in Sources */,
+				65DA320713EEB3AD00B8423C /* normsinv.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface test1ViewController : UIViewController{
-    double prob;
-    double pourcentage;
-    double effect;
+@interface test1ViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>{
+    double niveauConfNum;
+    double intervalleConfNum;
+    double taillePopNum;
     
     NSInteger integerPart, demicalPart;
     
