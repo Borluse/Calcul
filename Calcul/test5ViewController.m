@@ -13,59 +13,6 @@
 
 
 
-/*
- public static function NORMINV($probability,$mean,$stdDev) {
- $probability	= PHPExcel_Calculation_Functions::flattenSingleValue($probability);
- $mean			= PHPExcel_Calculation_Functions::flattenSingleValue($mean);
- $stdDev			= PHPExcel_Calculation_Functions::flattenSingleValue($stdDev);
- 
- if ((is_numeric($probability)) && (is_numeric($mean)) && (is_numeric($stdDev))) {
- if (($probability < 0) || ($probability > 1)) {
- return PHPExcel_Calculation_Functions::NaN();
- }
- if ($stdDev < 0) {
- return PHPExcel_Calculation_Functions::NaN();
- }
- return (self::_inverse_ncdf($probability) * $stdDev) + $mean;
- }
- return PHPExcel_Calculation_Functions::VALUE();
- }	//	function NORMINV()
-
- 
- 
- 
- 
- */
-
-
-
-/*
- private static function _gamma($data) {
- if ($data == 0.0) return 0;
- 
- static $p0 = 1.000000000190015;
- static $p = array ( 1 => 76.18009172947146,
- 2 => -86.50532032941677,
- 3 => 24.01409824083091,
- 4 => -1.231739572450155,
- 5 => 1.208650973866179e-3,
- 6 => -5.395239384953e-6
- );
- 
- $y = $x = $data;
- $tmp = $x + 5.5;
- $tmp -= ($x + 0.5) * log($tmp);
- 
- $summer = $p0;
- for ($j=1;$j<=6;++$j) {
- $summer += ($p[$j] / ++$y);
- }
- return exp(0 - $tmp + log(SQRT2PI * $summer / $x));
- }	//	function _gamma()
- 
-  */
-
-
 -(double) _gamma : (double) data{
     if(data == 0.0) return 0;
     
@@ -100,24 +47,6 @@
 
 
 
-/*
- 
- private static function _incompleteGamma($a,$x) {
- static $max = 32;
- $summer = 0;
- for ($n=0; $n<=$max; ++$n) {
-    $divisor = $a;
-    for ($i=1; $i<=$n; ++$i) {
-        $divisor *= ($a + $i);
-    }
-    $summer += (pow($x,$n) / $divisor);
- }
- return pow($x,$a) * exp(0-$x) * $summer;
- }	//	function _incompleteGamma()
- 
- 
- */
-
 -(double) _incompleteGamma : (double) a andB: (double) x{
     double summer = 0.0;
     int n ,i;
@@ -135,33 +64,6 @@
 }   
 
 
-/*
- public static function CHIDIST($value, $degrees) {
- $value		= PHPExcel_Calculation_Functions::flattenSingleValue($value);
- $degrees	= floor(PHPExcel_Calculation_Functions::flattenSingleValue($degrees));
- 
- if ((is_numeric($value)) && (is_numeric($degrees))) {
-    if ($degrees < 1) {
-        return PHPExcel_Calculation_Functions::NaN();
-    }
-    if ($value < 0) {
-        if (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_GNUMERIC) {
-            return 1;
-        }
-        return PHPExcel_Calculation_Functions::NaN();
-    }
- 
-    return 1 - (self::_incompleteGamma($degrees/2,$value/2) / self::_gamma($degrees/2));
-
- }
- return PHPExcel_Calculation_Functions::VALUE();
- }	//	function CHIDIST()
-
- 
- 
- 
- */
-
 
 -(double) CHIDIST: (double) value andDegree:(double) degree{
     double a =[self _incompleteGamma:degree/2 andB:value/2];
@@ -171,55 +73,6 @@
 
 
 
-
-/*
- public static function CHIINV($probability, $degrees) {
- $probability	= PHPExcel_Calculation_Functions::flattenSingleValue($probability);
- $degrees		= floor(PHPExcel_Calculation_Functions::flattenSingleValue($degrees));
- 
- if ((is_numeric($probability)) && (is_numeric($degrees))) {
- 
- $xLo = 100;
- $xHi = 0;
- 
- $x = $xNew = 1;
- $dx	= 1;
- $i = 0;
- 
- while ((ABS($dx) > PRECISION) && ($i++ < MAX_ITERATIONS)) {
- // Apply Newton-Raphson step
-    $result = self::CHIDIST($x, $degrees);
-    $error = $result - $probability;
-    if ($error == 0.0) {
-        $dx = 0;
-    } elseif ($error < 0.0) {
-        $xLo = $x;
-    } else {
-        $xHi = $x;
-    }
- // Avoid division by zero
-    if ($result != 0.0) {
-        $dx = $error / $result;
-        $xNew = $x - $dx;
-    }
- // If the NR fails to converge (which for example may be the
- // case if the initial guess is too rough) we apply a bisection
- // step to determine a more narrow interval around the root.
-    if (($xNew < $xLo) || ($xNew > $xHi) || ($result == 0.0)) {
-        $xNew = ($xLo + $xHi) / 2;
-        $dx = $xNew - $x;
-    }
-    $x = $xNew;
-}
-
- if ($i == MAX_ITERATIONS) {
-    return PHPExcel_Calculation_Functions::NA();
- }
- return round($x,12);
- }
- return PHPExcel_Calculation_Functions::VALUE();
- }	//	function CHIINV()
- */
 - (double)chiinv: (double) prob andDegree: (double) degree{  
     double xLo = 100;
     double xHi = 0;
