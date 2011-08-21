@@ -7,41 +7,309 @@
 //
 
 #import "test5ViewController.h"
+#import "normsinv.h"
 
 @implementation test5ViewController
 
 
+
+/*
+ public static function NORMINV($probability,$mean,$stdDev) {
+ $probability	= PHPExcel_Calculation_Functions::flattenSingleValue($probability);
+ $mean			= PHPExcel_Calculation_Functions::flattenSingleValue($mean);
+ $stdDev			= PHPExcel_Calculation_Functions::flattenSingleValue($stdDev);
+ 
+ if ((is_numeric($probability)) && (is_numeric($mean)) && (is_numeric($stdDev))) {
+ if (($probability < 0) || ($probability > 1)) {
+ return PHPExcel_Calculation_Functions::NaN();
+ }
+ if ($stdDev < 0) {
+ return PHPExcel_Calculation_Functions::NaN();
+ }
+ return (self::_inverse_ncdf($probability) * $stdDev) + $mean;
+ }
+ return PHPExcel_Calculation_Functions::VALUE();
+ }	//	function NORMINV()
+
+ 
+ 
+ 
+ 
+ */
+
+
+
+/*
+ private static function _gamma($data) {
+ if ($data == 0.0) return 0;
+ 
+ static $p0 = 1.000000000190015;
+ static $p = array ( 1 => 76.18009172947146,
+ 2 => -86.50532032941677,
+ 3 => 24.01409824083091,
+ 4 => -1.231739572450155,
+ 5 => 1.208650973866179e-3,
+ 6 => -5.395239384953e-6
+ );
+ 
+ $y = $x = $data;
+ $tmp = $x + 5.5;
+ $tmp -= ($x + 0.5) * log($tmp);
+ 
+ $summer = $p0;
+ for ($j=1;$j<=6;++$j) {
+ $summer += ($p[$j] / ++$y);
+ }
+ return exp(0 - $tmp + log(SQRT2PI * $summer / $x));
+ }	//	function _gamma()
+ 
+  */
+
+
+-(double) _gamma : (double) data{
+    if(data == 0.0) return 0;
+    
+    static double p0 = 1.000000000190015;
+    
+    double p[6] = {76.18009172947146, 
+                   -86.50532032941677,
+                   24.01409824083091,
+                   -1.231739572450155,
+                   1.208650973866179e-3,
+                    -5.395239384953e-6};
+    
+    double y = data;
+    double x = data;
+    double tmp = x+5.5;
+    tmp -= (x+0.5) * log(tmp);
+    
+    double summer = p0;
+    
+    for (int j=0; j<6; j++){
+        summer += (p[j] / ++y);
+    }
+    double a1 = SQRT2PI * summer / x;
+    
+    double a = log(SQRT2PI * summer / x);
+    double b = 0-tmp+a;
+    double c = exp(b);
+    
+    return exp(0-tmp + log(SQRT2PI * summer / x));
+    
+}
+
+
+
+/*
+ 
+ private static function _incompleteGamma($a,$x) {
+ static $max = 32;
+ $summer = 0;
+ for ($n=0; $n<=$max; ++$n) {
+    $divisor = $a;
+    for ($i=1; $i<=$n; ++$i) {
+        $divisor *= ($a + $i);
+    }
+    $summer += (pow($x,$n) / $divisor);
+ }
+ return pow($x,$a) * exp(0-$x) * $summer;
+ }	//	function _incompleteGamma()
+ 
+ 
+ */
+
+-(double) _incompleteGamma : (double) a andB: (double) x{
+    double summer = 0.0;
+    int n ,i;
+    double divisor;
+    for (n =0; n<=32; ++n){
+        divisor = a;
+        for (i = 1; i<=n; ++i){
+            divisor *= (a+i);
+        }
+        
+        summer += (pow(x, n) / divisor);
+    }
+    return pow(x, a) * exp(0-x) * summer;
+
+}   
+
+
+/*
+ public static function CHIDIST($value, $degrees) {
+ $value		= PHPExcel_Calculation_Functions::flattenSingleValue($value);
+ $degrees	= floor(PHPExcel_Calculation_Functions::flattenSingleValue($degrees));
+ 
+ if ((is_numeric($value)) && (is_numeric($degrees))) {
+    if ($degrees < 1) {
+        return PHPExcel_Calculation_Functions::NaN();
+    }
+    if ($value < 0) {
+        if (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_GNUMERIC) {
+            return 1;
+        }
+        return PHPExcel_Calculation_Functions::NaN();
+    }
+ 
+    return 1 - (self::_incompleteGamma($degrees/2,$value/2) / self::_gamma($degrees/2));
+
+ }
+ return PHPExcel_Calculation_Functions::VALUE();
+ }	//	function CHIDIST()
+
+ 
+ 
+ 
+ */
+
+
+-(double) CHIDIST: (double) value andDegree:(double) degree{
+    double a =[self _incompleteGamma:degree/2 andB:value/2];
+    double b = [self _gamma:degree/2];
+    return 1 - (a / b);
+}
+
+
+
+
+/*
+ public static function CHIINV($probability, $degrees) {
+ $probability	= PHPExcel_Calculation_Functions::flattenSingleValue($probability);
+ $degrees		= floor(PHPExcel_Calculation_Functions::flattenSingleValue($degrees));
+ 
+ if ((is_numeric($probability)) && (is_numeric($degrees))) {
+ 
+ $xLo = 100;
+ $xHi = 0;
+ 
+ $x = $xNew = 1;
+ $dx	= 1;
+ $i = 0;
+ 
+ while ((ABS($dx) > PRECISION) && ($i++ < MAX_ITERATIONS)) {
+ // Apply Newton-Raphson step
+    $result = self::CHIDIST($x, $degrees);
+    $error = $result - $probability;
+    if ($error == 0.0) {
+        $dx = 0;
+    } elseif ($error < 0.0) {
+        $xLo = $x;
+    } else {
+        $xHi = $x;
+    }
+ // Avoid division by zero
+    if ($result != 0.0) {
+        $dx = $error / $result;
+        $xNew = $x - $dx;
+    }
+ // If the NR fails to converge (which for example may be the
+ // case if the initial guess is too rough) we apply a bisection
+ // step to determine a more narrow interval around the root.
+    if (($xNew < $xLo) || ($xNew > $xHi) || ($result == 0.0)) {
+        $xNew = ($xLo + $xHi) / 2;
+        $dx = $xNew - $x;
+    }
+    $x = $xNew;
+}
+
+ if ($i == MAX_ITERATIONS) {
+    return PHPExcel_Calculation_Functions::NA();
+ }
+ return round($x,12);
+ }
+ return PHPExcel_Calculation_Functions::VALUE();
+ }	//	function CHIINV()
+ */
+- (double)chiinv: (double) prob andDegree: (double) degree{  
+    double xLo = 100;
+    double xHi = 0;
+    double x = 1;
+    double xNew = 1;
+    double dx = 1;
+    int i = 0;
+    double result;
+
+    
+    while ((ABS(dx) > PRECISION) && (i++ < MAX_ITERATIONS)){
+        result = [self CHIDIST:x andDegree:degree];
+        double err = result - prob;
+        if (err == 0){
+            dx = 0;
+        }else if (err < 0.0){
+            xLo = x;
+        } else{
+            xHi = x;
+        }
+        
+        if (result != 0.0) {
+            dx = err / result;
+            xNew = x - dx;
+        }
+        
+        if ((xNew < xLo) || (xNew > xHi) || (result == 0.0)){
+            xNew = (xLo + xHi) /2;
+            dx = xNew - x;
+        }
+//        
+        x = xNew;
+        
+    }
+    if (i == MAX_ITERATIONS){
+        return 0.0;
+    }
+
+    return round(x);
+
+}
+
+
+
 - (void) calcul{
-    double p = (1-prob/100)/2;
+    double p = (1.0-prob/100)/2;
     double n = normInv(p);
-    double results = abs(pourA - pourB)/sqrt(pourA * (1-pourA)/effetA +
+    double results = ABS(pourA - pourB)/sqrt(pourA * (1-pourA)/effetA +
                                              pourB * (1-pourB)/effetB);
-    if (results > abs(n)){
+    if (results > ABS(n)){
         resultNorLabel.text = SIGNIF;
     }else{
         resultNorLabel.text = NON_SIGNIF;
     }
     
-//    double powA = pow((abs((effetA*pourA)-((effetA)*((effetA*pourA)+(effetB*pourB))/(effetA+effetB)))-0.5), 2);
-//    double divA = ((effetA)*((effetA*pourA)+(effetB*pourB))/(effetA+effetB));
-//    double powB = pow((abs((effetB*pourB)-((effetB)*((effetA*pourA)+(effetB*pourB))/(effetA+effetB)))-0.5), 2);
-//    double divB = ((effetB)*((effetA*pourA)+(effetB*pourB))/(effetA+effetB));
-//    double powC = pow((abs(((1-pourA)*effetA)-((effetA)*(((1-pourA)*effetA)+((1-pourB)*effetB))/(effetA+effetB)))-0.5),2);
-//    double divC = ((effetA)*(((1-pourA)*effetA)+((1-pourB)*effetB))/(effetA+effetB));
-//    double powD = pow((abs(((1-pourB)*effetB)-((effetB)*(((1-pourA)*effetA)+((1-pourB)*effetB))/(effetA+effetB)))-0.5),2);
-//    double divD = ((effetB)*(((1-pourA)*effetA)+((1-pourB)*effetB))/(effetA+effetB));
-//    
-//    double resultChi2 = powA / divA + powB / divB + powC / divC + powD / divD;
     double pourAS = pourA / 100;
     double pourBS = pourB / 100;
-    double resultChi2 = pow((abs((pourAS*effetA)-((effetA)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB)))-0.5),2)/((effetA)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB))+pow((abs((pourBS*effetB)-((effetB)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB)))-0.5),2)/((effetB)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB))+pow((abs(((1-pourAS)*effetA)-((effetA)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB)))-0.5),2)/((effetA)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB))+pow((abs(((1-pourBS)*effetB)-((effetB)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB)))-0.5),2)/((effetB)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB));
+    
+    double c =pourAS - pourBS;
+    
+    double a =ABS(c);
+    double b = pow(((pourAS*(1-pourAS)/(effetA-1))+(pourBS*(1-pourBS)/(effetB-1))),0.5);
+    
+    double resultNormal = ABS(pourA/100-pourB/100)/pow(((pourA/100*(1-pourA/100)/(effetA-1))+(pourB/100*(1-pourB/100)/(effetB-1))),0.5);
+    
+    double resultChi2 = pow((ABS((pourAS*effetA)-((effetA)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB)))-0.5),2)/((effetA)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB))+pow((ABS((pourBS*effetB)-((effetB)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB)))-0.5),2)/((effetB)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB))+pow((ABS(((1-pourAS)*effetA)-((effetA)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB)))-0.5),2)/((effetA)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB))+pow((ABS(((1-pourBS)*effetB)-((effetB)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB)))-0.5),2)/((effetB)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB));
+    
+    
+    
     [chi2Text setText:[NSString stringWithFormat:@"%3.2f", resultChi2]];
-    double resultNormal = abs(pourBS-pourAS)/pow(((pourAS*(1-pourAS)/(effetA-1))+(pourBS*(1-pourBS)/(effetB-1))),0.5);
+  
     
     [loiNormalText setText:[NSString stringWithFormat:@"%3.2f", resultNormal]];
+ 
+    if (prob/100 == 0.95) p = 3.841458821;
+    else if (prob/100 == 0.99) p = 6.6348966;
+    else p = [self chiinv:1.0-prob/100 andDegree:1];
+    if ( p < resultChi2) {
+        [resultChi2Label setText: SIGNIF];
+    }
+    else{
+        [resultChi2Label setText: NON_SIGNIF];
+    }
     
-    
-    
+    if (normInv(1-(1-prob/100)/2 )< resultNormal) {
+        [resultNorLabel setText:SIGNIF];
+    }
+    else{
+        [resultNorLabel setText:NON_SIGNIF];
+    }
 }
 
 
@@ -273,5 +541,14 @@
     
     [self calcul];
 }
-
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [clearBtn setTarget:self];
+    [clearBtn setAction:@selector(clearBtnClicked)];
+    
+    [self initText];
+    
+    // Do any additional setup after loading the view from its nib.
+}
 @end

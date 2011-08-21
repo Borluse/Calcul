@@ -22,9 +22,9 @@
 //    [intervalle setText:[NSString stringWithFormat:@"%2.3f", results]];
 //    [soit setText:[NSString stringWithFormat:@"%2.1f -- %2.1f", (moyen - results), (moyen + results)]];
     double norme = normInv(PROP(prob));
-    norme = abs(norme * norme);
+    norme = ABS(norme * norme);
     
-    if (abs(moyA-moyB)/sqrt((ecartA * ecartA)/effectA + (ecartB * ecartB)/effectB)>norme){
+    if (ABS(moyA-moyB)/sqrt((ecartA * ecartA)/effectA + (ecartB * ecartB)/effectB)>norme){
         [resultLabel setText:@"Significatif"];
     }else{
         [resultLabel setText:@"Ecart non significatif"];
@@ -284,6 +284,16 @@
     [self calcul];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [clearBtn setTarget:self];
+    [clearBtn setAction:@selector(clearBtnClicked)];
+    
+    [self initText];
+    
+    // Do any additional setup after loading the view from its nib.
+}
 
 
 @end

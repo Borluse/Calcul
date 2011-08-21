@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#define PRECISION 8.88E-016
+#define MAX_ITERATIONS 256
+#define SQRT2PI 2.5066282746310005024157652848110452530069867406099
+
 @interface test5ViewController : UIViewController{
     
     
