@@ -11,7 +11,7 @@
 @interface test1ViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>{
     double niveauConfNum;
     double intervalleConfNum;
-    double taillePopNum;
+    int taillePopNum;
     
     NSInteger integerPart, demicalPart;
     

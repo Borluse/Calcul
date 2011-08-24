@@ -226,7 +226,8 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-    NSLog(@"didbegin");
+    textField.text = nil;
+    
 }
 
 #pragma mark - Display the selectors called
@@ -242,12 +243,19 @@
 	for (UITouch *touch in touches){
 		if ([taillePop isFirstResponder]){
             [taillePop resignFirstResponder];
-            taillePopNum = [taillePop.text intValue];
+            if (![taillePop.text isEqualToString:@""]){
+                taillePopNum = [taillePop.text intValue];
+            }
+            [taillePop setText:[NSString stringWithFormat:@"%d",taillePopNum]];
+            
             [self calcule];
         }
         if ([intervalleConf isFirstResponder]){
             [intervalleConf resignFirstResponder];
-            intervalleConfNum = [intervalleConf.text floatValue];
+            if (![intervalleConf.text isEqualToString:@"" ]){
+                intervalleConfNum = [intervalleConf.text floatValue];
+            }
+            [intervalleConf setText:[NSString stringWithFormat:@"%2.1f%%", intervalleConfNum]];
         }
 	}
     
@@ -257,7 +265,7 @@
 - (IBAction)clearBtnClicked : (id) sender{
     [niveauConf setText:@"95%"];
     [intervalleConf setText:@"5.0%"];
-    [taillePop setText:@"200000"];
+    [taillePop setText:@"15000"];
     [resultat setText:@""];
 
     [self initTexts];
@@ -271,7 +279,7 @@
 - (void) initTexts{
     niveauConfNum = 95;
     intervalleConfNum = 5;
-    taillePopNum = 150;
+    taillePopNum = 15000;
     [self calcule];
 }
 

@@ -184,9 +184,12 @@
 		if ([moyenne isFirstResponder]) [moyenne resignFirstResponder];
         if ([ecartType isFirstResponder]) [ecartType resignFirstResponder];
         if ([effectif isFirstResponder]) [effectif resignFirstResponder];
-        moyen = [moyenne.text floatValue];
-        ecarttype = [ecartType.text floatValue];
-        effect = [effectif.text floatValue];
+        if (![moyenne.text isEqualToString:@""]) moyen = [moyenne.text floatValue];
+        if (![ecartType.text isEqualToString:@""]) ecarttype = [ecartType.text floatValue];
+        if (![effectif.text isEqualToString:@""]) effect = [effectif.text floatValue];
+        [moyenne setText:[NSString stringWithFormat:@"%2.1f", moyen]];
+        [ecartType setText:[NSString stringWithFormat:@"%2.1f", ecartType]];
+        [effectif setText:[NSString stringWithFormat:@"2.0f", effect]];
         [self calcul];
 	}
 }

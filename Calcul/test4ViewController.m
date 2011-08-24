@@ -226,12 +226,18 @@
         if ([ecartTypeTextB isFirstResponder]) [ecartTypeTextB resignFirstResponder];
         if ([effectifTextA isFirstResponder]) [effectifTextA resignFirstResponder];
         if ([effectifTextB isFirstResponder]) [effectifTextB resignFirstResponder];        
-        moyA = [moyTextA.text floatValue];
-        moyB = [moyTextB.text floatValue];
-        ecartA = [ecartTypeTextA.text floatValue];
-        ecartB = [ecartTypeTextB.text floatValue];
-        effectA = [effectifTextA.text floatValue];
-        effectB = [effectifTextB.text floatValue];
+        if (![moyTextA.text isEqualToString:@""]) moyA = [moyTextA.text floatValue];
+        if (![moyTextB.text isEqualToString:@""]) moyB = [moyTextB.text floatValue];
+        if (![ecartTypeTextA.text isEqualToString:@""]) ecartA = [ecartTypeTextA.text floatValue];
+        if (![ecartTypeTextB.text isEqualToString:@""]) ecartB = [ecartTypeTextB.text floatValue];
+        if (![effectifTextA.text isEqualToString:@""]) effectA = [effectifTextA.text floatValue];
+        if (![effectifTextB.text isEqualToString:@""]) effectB = [effectifTextB.text floatValue];
+        [moyTextA setText:[NSString stringWithFormat:@"%2.1f",moyA]];
+        [moyTextB setText:[NSString stringWithFormat:@"%2.1f",moyB]];
+        [ecartTypeTextA setText:[NSString stringWithFormat:@"%2.1f", ecartA]];
+        [ecartTypeTextB setText:[NSString stringWithFormat:@"%2.1f", ecartB]]; 
+        [effectifTextA setText:[NSString stringWithFormat:@"%2.0f", effectA]];
+        [effectifTextB setText:[NSString stringWithFormat:@"%2.0f", effectB]];
         [self calcul];
 	}
 }

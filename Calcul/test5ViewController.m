@@ -340,10 +340,15 @@
         if ([effectAText isFirstResponder]) [effectAText resignFirstResponder];
         if ([effectBText isFirstResponder]) [effectBText resignFirstResponder];
        
-        pourA = [pourAText.text floatValue];
-        pourB = [pourBText.text floatValue];
-        effetA = [effectAText.text floatValue];
-        effetB = [effectBText.text floatValue];
+        if (![pourAText.text isEqualToString:@""]) pourA = [pourAText.text floatValue];
+        if (![pourBText.text isEqualToString:@""]) pourB = [pourBText.text floatValue];
+        if (![effectAText.text isEqualToString:@""]) effetA = [effectAText.text floatValue];
+        if (![effectBText.text isEqualToString:@""]) effetB = [effectBText.text floatValue];
+        
+        [pourAText setText:[NSString stringWithFormat:@"%2.1f", pourA]];
+        [pourBText setText:[NSString stringWithFormat:@"%2.1f", pourB]];
+        [effectAText setText:[NSString stringWithFormat:@"%2.1f", effetA]];
+        [effectBText setText:[NSString stringWithFormat:@"%2.1f", effetB]];        
         [self calcul];
 	}
 }

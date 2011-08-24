@@ -236,7 +236,8 @@
 {
 	// the user pressed the "Done" button, so dismiss the keyboard
     NSLog(@"shouldReturn");
-	[textField resignFirstResponder];
+    [textField resignFirstResponder];
+    
 	return YES;
 }
 
@@ -257,7 +258,10 @@
 	for (UITouch *touch in touches){
 		if ([taillePop isFirstResponder]){
             [taillePop resignFirstResponder];
-            effect = [taillePop.text intValue];
+            if (![taillePop.text isEqualToString:@""]){
+                effect = [taillePop.text intValue];
+            }
+            [taillePop setText:[NSString stringWithFormat:@"%d", effect]];
             [self calcule];
         }
 	}
