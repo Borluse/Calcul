@@ -24,6 +24,7 @@
     double norme = normInv(PROP(prob));
     norme = ABS(norme * norme);
     
+    
     if (ABS(moyA-moyB)/sqrt((ecartA * ecartA)/effectA + (ecartB * ecartB)/effectB)>norme){
         [resultLabel setText:@"Significatif"];
     }else{
@@ -295,7 +296,12 @@
     [super viewDidLoad];
     [clearBtn setTarget:self];
     [clearBtn setAction:@selector(clearBtnClicked)];
-    
+    [moyTextA setKeyboardType:UIKeyboardTypeDecimalPad];
+    [moyTextB setKeyboardType:UIKeyboardTypeDecimalPad];
+    [ecartTypeTextA setKeyboardType:UIKeyboardTypeDecimalPad];
+    [ecartTypeTextB setKeyboardType:UIKeyboardTypeDecimalPad];
+    [effectifTextA setKeyboardType:UIKeyboardTypeDecimalPad];
+    [effectifTextB setKeyboardType:UIKeyboardTypeDecimalPad];
     [self initText];
     
     // Do any additional setup after loading the view from its nib.

@@ -22,7 +22,7 @@
     n = n*n;
     double results = n*(0.5*(1-0.5))/(intervalleConfNum/100*intervalleConfNum/100);
     if (results < 30) results = 30;
-    [resultat setText:[NSString stringWithFormat:@"%f", results]];
+    [resultat setText:[NSString stringWithFormat:@"%2.0f", results]];
   //  [soitEntre setText:[NSString stringWithFormat:@"%2.1f%% -- %2.1f%%", (pourcentage/100 - results)*100, (pourcentage/100 + results)*100]];
     
 }
@@ -247,8 +247,6 @@
                 taillePopNum = [taillePop.text intValue];
             }
             [taillePop setText:[NSString stringWithFormat:@"%d",taillePopNum]];
-            
-            [self calcule];
         }
         if ([intervalleConf isFirstResponder]){
             [intervalleConf resignFirstResponder];
@@ -259,6 +257,7 @@
         }
 	}
     
+   [self calcule];
     
 }
 #pragma mark - uibarbuttonitem actions

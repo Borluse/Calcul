@@ -188,8 +188,8 @@
         if (![ecartType.text isEqualToString:@""]) ecarttype = [ecartType.text floatValue];
         if (![effectif.text isEqualToString:@""]) effect = [effectif.text floatValue];
         [moyenne setText:[NSString stringWithFormat:@"%2.1f", moyen]];
-        [ecartType setText:[NSString stringWithFormat:@"%2.1f", ecartType]];
-        [effectif setText:[NSString stringWithFormat:@"2.0f", effect]];
+        [ecartType setText:[NSString stringWithFormat:@"%2.1f", ecarttype]];
+        [effectif setText:[NSString stringWithFormat:@"%2.0f", effect]];
         [self calcul];
 	}
 }
@@ -242,8 +242,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [clearButton setTarget: self];
-    [clearButton setAction: @selector(clearBtnClicked)];
     [moyenne setKeyboardType:UIKeyboardTypeDecimalPad];
     [ecartType setKeyboardType:UIKeyboardTypeDecimalPad];
     [effectif setKeyboardType:UIKeyboardTypeDecimalPad];

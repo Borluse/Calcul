@@ -18,7 +18,7 @@
 
 - (void) calcule{
 
-    double norme = 1;// normInv(0.025);
+    double norme = normInv(0.025);
     norme = norme * norme;
 
     double results = sqrt(norme*(pourcentage/100*(1.0-pourcentage/100))/(effect));
@@ -218,7 +218,7 @@
             break;
         case 1:
             NSLog(@"intervalleConf");
-            [self createPickerWithId:1];
+            return YES;
             break;
         case 2:
             NSLog(@"Taille de la population");
@@ -261,17 +261,23 @@
             if (![taillePop.text isEqualToString:@""]){
                 effect = [taillePop.text intValue];
             }
-            [taillePop setText:[NSString stringWithFormat:@"%d", effect]];
+            [taillePop setText:[NSString stringWithFormat:@"%2.0f", effect]];
+            [self calcule];
+        }
+        if ([intervalleConf isFirstResponder]){
+            [intervalleConf resignFirstResponder];
+            if (![intervalleConf.text isEqualToString:@""]){
+                pourcentage = [intervalleConf.text doubleValue];
+            }
+            [intervalleConf setText:[NSString stringWithFormat:@"%2.2f%%", pourcentage]];
             [self calcule];
         }
 	}
-    
-    
 }
 #pragma mark - uibarbuttonitem actions
 - (IBAction)clearBtnClicked : (id) sender{
     [niveauConf setText:@"95%"];
-    [intervalleConf setText:@"5.0%"];
+    [intervalleConf setText:@"5.00%"];
     [taillePop setText:@"150"];
     [resultat setText:@""];
     [soitEntre setText:@""];
@@ -293,8 +299,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [clearButton setTarget:self];
-    [clearButton setAction:@selector(clearBtnClicked)];
     [intervalleConf setKeyboardType:UIKeyboardTypeDecimalPad];
     [taillePop setKeyboardType:UIKeyboardTypeDecimalPad];
     

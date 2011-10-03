@@ -404,7 +404,10 @@
     [super viewDidLoad];
     [clearBtn setTarget:self];
     [clearBtn setAction:@selector(clearBtnClicked)];
-    
+    [pourAText setKeyboardType:UIKeyboardTypeDecimalPad];
+    [pourBText setKeyboardType:UIKeyboardTypeDecimalPad];
+    [effectAText setKeyboardType:UIKeyboardTypeDecimalPad];
+    [effectBText setKeyboardType:UIKeyboardTypeDecimalPad];
     [self initText];
     
     // Do any additional setup after loading the view from its nib.

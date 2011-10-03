@@ -28,29 +28,29 @@
     //Create the view for the tests
     test1ViewController * test1View = [[test1ViewController alloc]init];
     [test1View setTitle:@"Test 1 Échantillon"];
-    UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:@"test1" image:[UIImage imageNamed:@"01-refresh.png"] tag:0];
+    UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:@"test1" image:[UIImage imageNamed:@"x.png"] tag:0];
     test1View.tabBarItem = item;
 
     test2ViewController * test2View = [[test2ViewController alloc] init];
     [test2View setTitle:@"Test 2 Précision en %"];
-    item = [[UITabBarItem alloc] initWithTitle:@"test2" image:[UIImage imageNamed:@"02-redo.png"] tag:1];
+    item = [[UITabBarItem alloc] initWithTitle:@"test2" image:[UIImage imageNamed:@"IC.png"] tag:1];
     test2View.tabBarItem = item;
   
     
     test3ViewController * test3View = [[test3ViewController alloc] init];
     [test3View setTitle:@"Test 3 Précision en moyenne"];
-    item = [[UITabBarItem alloc] initWithTitle:@"test3" image:[UIImage imageNamed:@"03-loopback.png"] tag:2];
+    item = [[UITabBarItem alloc] initWithTitle:@"test3" image:[UIImage imageNamed:@"xbar.png"] tag:2];
     test3View.tabBarItem = item;
 
     
     test4ViewController * test4View = [[test4ViewController alloc] init];
     [test4View setTitle:@"Test 4 Signficativité d'un écart"];
-    item = [[UITabBarItem alloc] initWithTitle:@"test4" image:[UIImage imageNamed:@"04-squiggle.png"] tag:3];
+    item = [[UITabBarItem alloc] initWithTitle:@"test4" image:[UIImage imageNamed:@"xx.png"] tag:3];
     test4View.tabBarItem = item;
     
     test5ViewController * test5View = [[test5ViewController alloc] init];
     [test5View setTitle:@"Test 4 Signficativité d'un écart"];
-    item = [[UITabBarItem alloc] initWithTitle:@"test5" image:[UIImage imageNamed:@"05-shuffle.png"] tag:4];
+    item = [[UITabBarItem alloc] initWithTitle:@"test5" image:[UIImage imageNamed:@"x2.png"] tag:4];
     test5View.tabBarItem = item;
     
     

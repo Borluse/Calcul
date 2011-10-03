@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "normsinv.h"
-@interface test3ViewController : UIViewController{
+@interface test3ViewController : UIViewController<UIPickerViewDelegate>{
     double prob;
     double pourcentage;
     double effect;
