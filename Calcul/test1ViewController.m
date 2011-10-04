@@ -253,7 +253,7 @@
             if (![intervalleConf.text isEqualToString:@"" ]){
                 intervalleConfNum = [intervalleConf.text floatValue];
             }
-            [intervalleConf setText:[NSString stringWithFormat:@"%2.1f%%", intervalleConfNum]];
+            [intervalleConf setText:[NSString stringWithFormat:@"%2.1f", intervalleConfNum]];
         }
 	}
     
@@ -263,7 +263,7 @@
 #pragma mark - uibarbuttonitem actions
 - (IBAction)clearBtnClicked : (id) sender{
     [niveauConf setText:@"95%"];
-    [intervalleConf setText:@"5.0%"];
+    [intervalleConf setText:@"5.0"];
     [taillePop setText:@"15000"];
     [resultat setText:@""];
 
@@ -277,7 +277,7 @@
 
 - (void) initTexts{
     niveauConfNum = 95;
-    intervalleConfNum = 5;
+    intervalleConfNum = 5.0;
     taillePopNum = 15000;
     [self calcule];
 }

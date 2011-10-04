@@ -133,7 +133,7 @@
             returnStr = [NSString stringWithFormat:@"%d%%",row+1];
             break;
         default:
-            returnStr = [[pickerArray objectAtIndex:row] stringByAppendingString:@"%%"];
+            returnStr = [[pickerArray objectAtIndex:row] stringByAppendingString:@"%"];
             break;
     }
 	
@@ -155,7 +155,7 @@
     switch (pickerView.tag) {
         case 100:
             NSLog(@"Seuil");
-            seuil.text = [pickerArray objectAtIndex:row];
+            seuil.text = [NSString stringWithFormat:@"%@%%", [pickerArray objectAtIndex:row]];
             prob = [seuil.text intValue];
             [self calcul];            
             break;
@@ -171,6 +171,7 @@
         case 0:
             NSLog(@"seuil");
             [self createPickerWithId:0];
+            return NO;
             break;
         default:
             return YES;
@@ -218,7 +219,7 @@
 }
 
 #pragma mark - uibarbuttonitem actions
-- (void) clearBtnClicked{
+- (IBAction)clearBtnClicked:(id)sender{
     [seuil setText:@"95%"];
     [moyenne setText:@"5.1"];
     [ecartType setText:@"1.0"];
@@ -227,7 +228,6 @@
     [soit setText:@""];
     [self initText];
 }
-
 
 #pragma mark - View lifecycle
 

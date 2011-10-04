@@ -347,8 +347,8 @@
         
         [pourAText setText:[NSString stringWithFormat:@"%2.1f", pourA]];
         [pourBText setText:[NSString stringWithFormat:@"%2.1f", pourB]];
-        [effectAText setText:[NSString stringWithFormat:@"%2.1f", effetA]];
-        [effectBText setText:[NSString stringWithFormat:@"%2.1f", effetB]];        
+        [effectAText setText:[NSString stringWithFormat:@"%2.0f", effetA]];
+        [effectBText setText:[NSString stringWithFormat:@"%2.0f", effetB]];        
         [self calcul];
 	}
 }

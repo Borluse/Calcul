@@ -173,7 +173,7 @@
             returnStr = [NSString stringWithFormat:@"%d%%",row+1];
             break;
         default:
-            returnStr = [[pickerArray objectAtIndex:row] stringByAppendingString:@"%%"];
+            returnStr = [[pickerArray objectAtIndex:row] stringByAppendingString:@"%"];
             break;
     }
 	
@@ -195,7 +195,7 @@
     switch (pickerView.tag) {
         case 100:
             NSLog(@"Seuil");
-            seuilText.text = [pickerArray objectAtIndex:row];
+            seuilText.text = [NSString stringWithFormat:@"%@%%",[pickerArray objectAtIndex:row]];
             prob = [seuilText.text intValue];
             [self calcul];            
             break;

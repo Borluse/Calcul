@@ -186,7 +186,7 @@
     switch (pickerView.tag) {
         case 100:
             NSLog(@"niveau de conf");
-            niveauConf.text = [pickerArray objectAtIndex:row];
+            niveauConf.text = [NSString stringWithFormat:@"%@%%",[pickerArray objectAtIndex:row]];
             prob = [niveauConf.text intValue];
             [self calcule];
             break;
@@ -269,7 +269,7 @@
             if (![intervalleConf.text isEqualToString:@""]){
                 pourcentage = [intervalleConf.text doubleValue];
             }
-            [intervalleConf setText:[NSString stringWithFormat:@"%2.2f%%", pourcentage]];
+            [intervalleConf setText:[NSString stringWithFormat:@"%2.1f", pourcentage]];
             [self calcule];
         }
 	}
@@ -277,7 +277,7 @@
 #pragma mark - uibarbuttonitem actions
 - (IBAction)clearBtnClicked : (id) sender{
     [niveauConf setText:@"95%"];
-    [intervalleConf setText:@"5.00%"];
+    [intervalleConf setText:@"5.0"];
     [taillePop setText:@"150"];
     [resultat setText:@""];
     [soitEntre setText:@""];

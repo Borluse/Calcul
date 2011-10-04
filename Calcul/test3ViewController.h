@@ -39,4 +39,6 @@
 @property (nonatomic, retain) IBOutlet UITextField *soit;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *clearButton;
 
+- (IBAction)clearBtnClicked:(id)sender;
+
 @end
