@@ -465,7 +465,6 @@
 						<string key="NSFrame">{{20, 354}, {289, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -492,7 +491,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Avec Loi Normale Réduit</string>
+						<string key="IBUIText">Avec Loi Normale Réduite</string>
 						<reference key="IBUIFont" ref="564074093"/>
 						<reference key="IBUITextColor" ref="163632997"/>
 						<nil key="IBUIHighlightedColor"/>

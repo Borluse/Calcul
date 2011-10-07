@@ -25,6 +25,14 @@
     [resultat setText:[NSString stringWithFormat:@"%2.1f%%", results*100]];
     [soitEntre setText:[NSString stringWithFormat:@"%2.1f%% -- %2.1f%%", (pourcentage/100 - results)*100, (pourcentage/100 + results)*100]];
 
+    double resultsCo;
+
+    if(((effect/populationNum)>0.1)&&(effect<populationNum)) {
+        resultsCo = results*sqrt((populationNum - effect)/(populationNum - 1));
+        [resultatCorrige setText:[NSString stringWithFormat:@"%2.1f%%", resultsCo*100]];
+    }else{
+        [resultatCorrige setText:@""];
+    }
 }
 
 #pragma mark - inits
@@ -41,8 +49,8 @@
 - (void)dealloc
 {
     [niveauConf release];
-    [intervalleConf release];
-    [taillePop release];
+    [pourcentageObserve release];
+    [effectif release];
     [resultat release];
     [soitEntre release];
     [clearButton release];
@@ -50,10 +58,12 @@
     [resultat release];
     [soitEntre release];
     [niveauConf release];
-    [intervalleConf release];
-    [taillePop release];
+    [pourcentageObserve release];
+    [effectif release];
     [clearButton release];
     [clearButton release];
+    [population release];
+    [resultatCorrige release];
     [super dealloc];
 }
 
@@ -199,7 +209,7 @@
             else {
                 demicalPart = row;
             }
-            intervalleConf.text = [NSString stringWithFormat:@"%d.%d%%", integerPart, demicalPart];
+            pourcentageObserve.text = [NSString stringWithFormat:@"%d.%d%%", integerPart, demicalPart];
             pourcentage = [[NSString stringWithFormat:@"%d.%d", integerPart, demicalPart] floatValue];
             [self calcule];
             break;
@@ -255,32 +265,40 @@
 	return [super respondsToSelector:aSelector];
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-	for (UITouch *touch in touches){
-		if ([taillePop isFirstResponder]){
-            [taillePop resignFirstResponder];
-            if (![taillePop.text isEqualToString:@""]){
-                effect = [taillePop.text intValue];
-            }
-            [taillePop setText:[NSString stringWithFormat:@"%2.0f", effect]];
-            [self calcule];
-        }
-        if ([intervalleConf isFirstResponder]){
-            [intervalleConf resignFirstResponder];
-            if (![intervalleConf.text isEqualToString:@""]){
-                pourcentage = [intervalleConf.text doubleValue];
-            }
-            [intervalleConf setText:[NSString stringWithFormat:@"%2.1f", pourcentage]];
-            [self calcule];
-        }
-	}
+	//for (UITouch *touch in touches){
+    if ([effectif isFirstResponder]){
+        [effectif resignFirstResponder];
+    }
+    if ([pourcentageObserve isFirstResponder]){
+        [pourcentageObserve resignFirstResponder];
+    }
+    if ([population isFirstResponder]){
+        [population resignFirstResponder];
+    }
+    if (![effectif.text isEqualToString:@""]){
+        effect = [effectif.text intValue];
+    }
+    [effectif setText:[NSString stringWithFormat:@"%2.0f", effect]];
+    if (![pourcentageObserve.text isEqualToString:@""]){
+        pourcentage = [pourcentageObserve.text doubleValue];
+    }
+    [pourcentageObserve setText:[NSString stringWithFormat:@"%2.1f", pourcentage]];
+    if (![population.text isEqualToString:@""]){
+        populationNum = [population.text doubleValue];
+    }
+    [population setText:[NSString stringWithFormat:@"%2.0f", populationNum]];
+    [self calcule];
 }
 #pragma mark - uibarbuttonitem actions
 - (IBAction)clearBtnClicked : (id) sender{
     [niveauConf setText:@"95%"];
-    [intervalleConf setText:@"5.0"];
-    [taillePop setText:@"150"];
+    [pourcentageObserve setText:@"50.0"];
+    [effectif setText:@"150"];
+    [population setText:@"20000"];
+    
     [resultat setText:@""];
     [soitEntre setText:@""];
+    [resultatCorrige setText:@""];
     [self initTexts];
     
 }
@@ -291,7 +309,7 @@
 
 - (void) initTexts{
     prob = 95;
-    pourcentage = 5;
+    pourcentage = 50;
     effect = 150;
     [self calcule];
 }
@@ -299,8 +317,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [intervalleConf setKeyboardType:UIKeyboardTypeDecimalPad];
-    [taillePop setKeyboardType:UIKeyboardTypeDecimalPad];
+    [pourcentageObserve setKeyboardType:UIKeyboardTypeDecimalPad];
+    [effectif setKeyboardType:UIKeyboardTypeDecimalPad];
     
     [self initTexts];
 
@@ -311,10 +329,10 @@
 {
     [niveauConf release];
     niveauConf = nil;
-    [intervalleConf release];
-    intervalleConf = nil;
-    [taillePop release];
-    taillePop = nil;
+    [pourcentageObserve release];
+    pourcentageObserve = nil;
+    [effectif release];
+    effectif = nil;
     [resultat release];
     resultat = nil;
     [soitEntre release];
@@ -325,14 +343,16 @@
     [self setSoitEntre:nil];
     [niveauConf release];
     niveauConf = nil;
-    [intervalleConf release];
-    intervalleConf = nil;
-    [taillePop release];
-    taillePop = nil;
+    [pourcentageObserve release];
+    pourcentageObserve = nil;
+    [effectif release];
+    effectif = nil;
     [clearButton release];
     clearButton = nil;
     [clearButton release];
     clearButton = nil;
+    [resultatCorrige release];
+    resultatCorrige = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

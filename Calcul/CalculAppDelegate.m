@@ -17,7 +17,7 @@
 {
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
-    [self performSelector:@selector(getIntoMainMenu) withObject:nil afterDelay:2];
+    [self performSelector:@selector(getIntoMainMenu) withObject:nil afterDelay:4];
     return YES;
 }
 

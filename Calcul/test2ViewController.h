@@ -12,6 +12,7 @@
     double prob;
     double pourcentage;
     double effect;
+    double populationNum;
     
     NSInteger integerPart, demicalPart;
     
@@ -20,11 +21,14 @@
     
     UITextField *resultat;
     UITextField *soitEntre;
-    IBOutlet UITextField *niveauConf;
-    IBOutlet UITextField *intervalleConf;
-    IBOutlet UITextField *taillePop;
-    IBOutlet UIBarButtonItem *clearButton;
+    IBOutlet UITextField *resultatCorrige;
     
+    IBOutlet UITextField *niveauConf;
+    IBOutlet UITextField *pourcentageObserve;
+    IBOutlet UITextField *effectif;
+    IBOutlet UITextField *population;
+    
+    IBOutlet UIBarButtonItem *clearButton;
 }
 @property (nonatomic, retain) IBOutlet UITextField *resultat;
 @property (nonatomic, retain) IBOutlet UITextField *soitEntre;

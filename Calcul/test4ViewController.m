@@ -220,7 +220,7 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-	for (UITouch *touch in touches){
+	//for (UITouch *touch in touches){
 		if ([moyTextA isFirstResponder]) [moyTextA resignFirstResponder];
   		if ([moyTextB isFirstResponder]) [moyTextB resignFirstResponder];
         if ([ecartTypeTextA isFirstResponder]) [ecartTypeTextA resignFirstResponder];
@@ -240,7 +240,7 @@
         [effectifTextA setText:[NSString stringWithFormat:@"%2.0f", effectA]];
         [effectifTextB setText:[NSString stringWithFormat:@"%2.0f", effectB]];
         [self calcul];
-	}
+	//}
 }
 
 

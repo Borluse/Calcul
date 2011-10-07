@@ -11,7 +11,8 @@
 @interface test1ViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>{
     double niveauConfNum;
     double intervalleConfNum;
-    int taillePopNum;
+    double pourcentageAttenduNum;
+    double effectifNum;
     
     NSInteger integerPart, demicalPart;
     
@@ -19,10 +20,13 @@
     NSArray *pickerArray;
     
     UITextField *resultat;
+    IBOutlet UITextField *resultatCorrige;
 
     IBOutlet UITextField *niveauConf;
     IBOutlet UITextField *intervalleConf;
-    IBOutlet UITextField *taillePop;
+    IBOutlet UITextField *pourcentageAttendu;
+    IBOutlet UITextField *effectif;
+
     IBOutlet UIBarButtonItem *clearButton;
 }
 @property (nonatomic, retain) IBOutlet UITextField *resultat;

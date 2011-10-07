@@ -20,11 +20,22 @@
     double n = normInv(p);
 //    double n = [self normInv];
     n = n*n;
-    double results = n*(0.5*(1-0.5))/(intervalleConfNum/100*intervalleConfNum/100);
+    double pour = pourcentageAttenduNum/100;
+    double results = n*(pour*(1-pour))/(intervalleConfNum/100*intervalleConfNum/100);
     if (results < 30) results = 30;
     [resultat setText:[NSString stringWithFormat:@"%2.0f", results]];
   //  [soitEntre setText:[NSString stringWithFormat:@"%2.1f%% -- %2.1f%%", (pourcentage/100 - results)*100, (pourcentage/100 + results)*100]];
+    /* corriger */
     
+    double resultCo;
+    if (((results/effectifNum)>0.1) && (results<effectifNum)){
+        resultCo =  MAX(results*effectifNum/(results+effectifNum-1), 30);
+        [resultatCorrige setText:[NSString stringWithFormat:@"%2.0f", resultCo]];        
+    }
+    else{
+        [resultatCorrige setText:@""];
+    }
+        
 }
 
 #pragma mark - inits
@@ -42,9 +53,11 @@
 {
     [niveauConf release];
     [intervalleConf release];
-    [taillePop release];
+    [pourcentageAttendu release];
     [resultat release];
     [clearButton release];
+    [effectif release];
+    [resultatCorrige release];
     [super dealloc];
 }
 
@@ -210,6 +223,8 @@
             [self createNumberPad];
             return YES;
             break;
+        case 3:
+            return YES;
         default:
             break;
     }
@@ -240,33 +255,39 @@
 	return [super respondsToSelector:aSelector];
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-	for (UITouch *touch in touches){
-		if ([taillePop isFirstResponder]){
-            [taillePop resignFirstResponder];
-            if (![taillePop.text isEqualToString:@""]){
-                taillePopNum = [taillePop.text intValue];
-            }
-            [taillePop setText:[NSString stringWithFormat:@"%d",taillePopNum]];
-        }
-        if ([intervalleConf isFirstResponder]){
-            [intervalleConf resignFirstResponder];
-            if (![intervalleConf.text isEqualToString:@"" ]){
-                intervalleConfNum = [intervalleConf.text floatValue];
-            }
-            [intervalleConf setText:[NSString stringWithFormat:@"%2.1f", intervalleConfNum]];
-        }
-	}
-    
-   [self calcule];
-    
+	//for (UITouch *touch in touches){
+    if ([pourcentageAttendu isFirstResponder]){
+        [pourcentageAttendu resignFirstResponder];        
+    }
+    if ([intervalleConf isFirstResponder]){
+        [intervalleConf resignFirstResponder];
+    }
+    if ([effectif isFirstResponder]){
+        [effectif resignFirstResponder];
+    }
+    if (![pourcentageAttendu.text isEqualToString:@""]){
+        pourcentageAttenduNum = [pourcentageAttendu.text doubleValue];
+    }
+    [pourcentageAttendu setText:[NSString stringWithFormat:@"%2.1f",pourcentageAttenduNum]];
+    if (![intervalleConf.text isEqualToString:@"" ]){
+        intervalleConfNum = [intervalleConf.text floatValue];
+    }
+    [intervalleConf setText:[NSString stringWithFormat:@"%2.1f", intervalleConfNum]];
+    if (![effectif.text isEqualToString:@""]){
+        effectifNum = [effectif.text doubleValue];
+    }
+    [effectif setText:[NSString stringWithFormat:@"%2.0f", effectifNum]];
+	//}
+    [self calcule];
 }
 #pragma mark - uibarbuttonitem actions
 - (IBAction)clearBtnClicked : (id) sender{
     [niveauConf setText:@"95%"];
     [intervalleConf setText:@"5.0"];
-    [taillePop setText:@"15000"];
+    [pourcentageAttendu setText:@"50.0"];
+    [effectif setText:@"20000"];
     [resultat setText:@""];
-
+    [resultatCorrige setText:@""];
     [self initTexts];
     
 }
@@ -278,7 +299,8 @@
 - (void) initTexts{
     niveauConfNum = 95;
     intervalleConfNum = 5.0;
-    taillePopNum = 15000;
+    pourcentageAttenduNum = 50;
+    effectifNum = 20000;
     [self calcule];
 }
 
@@ -288,7 +310,7 @@
     [clearButton setTarget:self];
     [clearButton setAction:@selector(clearBtnClicked)];
     [intervalleConf setKeyboardType:UIKeyboardTypeDecimalPad];
-    [taillePop setKeyboardType:UIKeyboardTypeDecimalPad];
+    [pourcentageAttendu setKeyboardType:UIKeyboardTypeDecimalPad];
     
     [self initTexts];
     
@@ -301,13 +323,17 @@
     niveauConf = nil;
     [intervalleConf release];
     intervalleConf = nil;
-    [taillePop release];
-    taillePop = nil;
+    [pourcentageAttendu release];
+    pourcentageAttendu = nil;
     [resultat release];
     resultat = nil;
     [clearButton release];
     clearButton = nil;
     [self setResultat:nil];
+    [effectif release];
+    effectif = nil;
+    [resultatCorrige release];
+    resultatCorrige = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

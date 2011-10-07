@@ -15,7 +15,7 @@
     
     double moyen;
     double ecarttype;
-
+    double populationNum;
     
     NSInteger integerPart, demicalPart;
     
@@ -28,6 +28,11 @@
     UITextField *effectif;
     UITextField *intervalle;
     UITextField *soit;
+    
+    IBOutlet UITextField *resultatCorrige;
+    IBOutlet UITextField *population;
+    
+    
     UIBarButtonItem *clearButton;
 }
 @property (nonatomic, retain) IBOutlet UITextField *seuil;

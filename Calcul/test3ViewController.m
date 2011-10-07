@@ -25,9 +25,18 @@
     double norme = normInv(PROP(prob));
     norme = norme * norme;
     
-    double results = sqrt(norme*(ecarttype*ecarttype)/(effect*effect));
+    double results = sqrt(norme*(ecarttype*ecarttype)/(effect));
     [intervalle setText:[NSString stringWithFormat:@"%2.3f", results]];
     [soit setText:[NSString stringWithFormat:@"%2.1f -- %2.1f", (moyen - results), (moyen + results)]];
+     
+    double resultsCo;
+
+    if(((effect/populationNum)>0.1)&&(effect<populationNum)) {
+        resultsCo = results*sqrt((populationNum - effect)/(populationNum - 1));
+        [resultatCorrige setText:[NSString stringWithFormat:@"%2.3f", resultsCo]];
+    }else{
+        [resultatCorrige setText:@""];
+    }
 
 }
 
@@ -57,6 +66,8 @@
     [intervalle release];
     [soit release];
     [clearButton release];
+    [population release];
+    [resultatCorrige release];
     [super dealloc];
 }
 
@@ -181,18 +192,20 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-	for (UITouch *touch in touches){
-		if ([moyenne isFirstResponder]) [moyenne resignFirstResponder];
-        if ([ecartType isFirstResponder]) [ecartType resignFirstResponder];
-        if ([effectif isFirstResponder]) [effectif resignFirstResponder];
-        if (![moyenne.text isEqualToString:@""]) moyen = [moyenne.text floatValue];
-        if (![ecartType.text isEqualToString:@""]) ecarttype = [ecartType.text floatValue];
-        if (![effectif.text isEqualToString:@""]) effect = [effectif.text floatValue];
-        [moyenne setText:[NSString stringWithFormat:@"%2.1f", moyen]];
-        [ecartType setText:[NSString stringWithFormat:@"%2.1f", ecarttype]];
-        [effectif setText:[NSString stringWithFormat:@"%2.0f", effect]];
-        [self calcul];
-	}
+	//for (UITouch *touch in touches){
+    if ([moyenne isFirstResponder]) [moyenne resignFirstResponder];
+    if ([ecartType isFirstResponder]) [ecartType resignFirstResponder];
+    if ([effectif isFirstResponder]) [effectif resignFirstResponder];
+    if ([population isFirstResponder]) [population resignFirstResponder];
+    if (![moyenne.text isEqualToString:@""]) moyen = [moyenne.text floatValue];
+    if (![ecartType.text isEqualToString:@""]) ecarttype = [ecartType.text floatValue];
+    if (![effectif.text isEqualToString:@""]) effect = [effectif.text floatValue];
+    if (![population.text isEqualToString:@""]) populationNum = [population.text doubleValue];
+    [moyenne setText:[NSString stringWithFormat:@"%2.1f", moyen]];
+    [ecartType setText:[NSString stringWithFormat:@"%2.1f", ecarttype]];
+    [effectif setText:[NSString stringWithFormat:@"%2.0f", effect]];
+    [population setText:[NSString stringWithFormat:@"%2.0f", populationNum]];
+    [self calcul];
 }
 
 
@@ -224,6 +237,9 @@
     [moyenne setText:@"5.1"];
     [ecartType setText:@"1.0"];
     [effectif setText:@"150"];
+    [population setText:@"20000"];
+
+    [resultatCorrige setText:@""];
     [intervalle setText:@""];
     [soit setText:@""];
     [self initText];
@@ -236,6 +252,7 @@
     moyen = 5.1;
     ecarttype = 1.0;
     effect = 150;
+    populationNum = 20000;
     [self calcul];
 }
 
@@ -259,6 +276,10 @@
     [self setIntervalle:nil];
     [self setSoit:nil];
     [self setClearButton:nil];
+    [population release];
+    population = nil;
+    [resultatCorrige release];
+    resultatCorrige = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

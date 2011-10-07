@@ -322,7 +322,7 @@
 #pragma mark - delegates of textfield
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     switch (textField.tag) {
-        case 0:
+        case 0:;
             NSLog(@"seuil");
             [self createPickerWithId:0];
             break;
@@ -334,7 +334,7 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-	for (UITouch *touch in touches){
+	//for (UITouch *touch in touches){
 		if ([pourAText isFirstResponder]) [pourAText resignFirstResponder];
   		if ([pourBText isFirstResponder]) [pourBText resignFirstResponder];
         if ([effectAText isFirstResponder]) [effectAText resignFirstResponder];
@@ -350,7 +350,7 @@
         [effectAText setText:[NSString stringWithFormat:@"%2.0f", effetA]];
         [effectBText setText:[NSString stringWithFormat:@"%2.0f", effetB]];        
         [self calcul];
-	}
+	//	}
 }
 
 
