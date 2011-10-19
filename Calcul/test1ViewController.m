@@ -71,7 +71,7 @@
 #pragma mark - create number pad
 
 -(void) createNumberPad{
-    //    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Set", nil];
+    //    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"validé", nil];
     //    
     //    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     //    [actionSheet setTag:0];
@@ -99,7 +99,7 @@
 
 - (void) createPickerWithId:(NSInteger)tag{
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Set", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Validé", nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     [actionSheet setTag:0];
@@ -115,7 +115,11 @@
     
     pickerArray = [[NSArray arrayWithObjects:@"80",@"85",@"90",@"95",@"99",nil]retain];
     picker.tag = 100;
-    [picker selectRow:3 inComponent:0 animated:YES];
+    int idx;
+    idx = [pickerArray indexOfObject:[NSString stringWithFormat:@"%2.0f", niveauConfNum]];
+    
+
+    [picker selectRow:idx inComponent:0 animated:YES];
     
     [actionSheet setBounds:CGRectMake(0, 0, 320, 400)];
 
@@ -126,6 +130,7 @@
 
 #pragma mark - delegate for actionsheet
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self calcule];
 }
 
 

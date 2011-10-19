@@ -18,7 +18,8 @@
 
 - (void) calcule{
 
-    double norme = normInv(0.025);
+    
+    double norme = normInv(PROP(prob));
     norme = norme * norme;
 
     double results = sqrt(norme*(pourcentage/100*(1.0-pourcentage/100))/(effect));
@@ -77,7 +78,7 @@
 #pragma mark - create number pad
 
 -(void) createNumberPad{
-    //    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Set", nil];
+    //    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"validé", nil];
     //    
     //    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     //    [actionSheet setTag:0];
@@ -105,7 +106,7 @@
 
 - (void) createPickerWithId:(NSInteger)tag{
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Set", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"validé", nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     [actionSheet setTag:0];
@@ -123,7 +124,11 @@
         case 0:
             pickerArray = [[NSArray arrayWithObjects:@"80",@"85",@"90",@"95",@"99",nil]retain];
             picker.tag = 100;
-            [picker selectRow:3 inComponent:0 animated:YES];
+            int idx;
+            idx = [pickerArray indexOfObject:[NSString stringWithFormat:@"%2.0f", prob]];
+            
+
+            [picker selectRow:idx inComponent:0 animated:YES];
             break;
         case 1:
             picker.tag = 101;
@@ -143,6 +148,7 @@
 
 #pragma mark - delegate for actionsheet
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self calcule];
 }
 
 

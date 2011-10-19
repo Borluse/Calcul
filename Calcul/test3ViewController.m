@@ -97,7 +97,7 @@
 
 - (void) createPickerWithId:(NSInteger)tag{
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Set", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"validé", nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     [actionSheet setTag:0];
@@ -114,7 +114,11 @@
     switch (tag) {
         case 0:
             pickerArray = [[NSArray arrayWithObjects:@"80",@"85",@"90",@"95",@"99",nil]retain];
-            [picker selectRow:3 inComponent:0 animated:YES];
+            int idx;
+            idx = [pickerArray indexOfObject:[NSString stringWithFormat:@"%2.0f", prob]];
+            
+
+            [picker selectRow:idx inComponent:0 animated:YES];
             picker.tag = 100;
             break;
         default:
@@ -130,6 +134,7 @@
 
 #pragma mark - delegate for actionsheet
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self calcul];
 }
 
 

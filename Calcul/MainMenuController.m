@@ -17,25 +17,8 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        tests = [[NSMutableArray alloc] init];
-        ClassTest *test = [[ClassTest alloc] initWithTitle:@"test1" andMeaning:@"meaning1" andIcon:nil];
-        [tests addObject:test];
-        [test release];
-        test = nil;
-        test = [[ClassTest alloc] initWithTitle:@"test2" andMeaning:@"meaning2" andIcon:nil];
-        [tests addObject:test];
-        [test release];        
-        test = [[ClassTest alloc] initWithTitle:@"test3" andMeaning:@"meaning3" andIcon:nil];
-        [tests addObject:test];
-        [test release];        
-        test = [[ClassTest alloc] initWithTitle:@"test4" andMeaning:@"meaning4" andIcon:nil];
-        [tests addObject:test];
-        [test release];        
-        test = [[ClassTest alloc] initWithTitle:@"test5" andMeaning:@"meaning5" andIcon:nil];
-        [tests addObject:test];
-        [test release];
         [self.view setBackgroundColor:[UIColor scrollViewTexturedBackgroundColor]];
-        
+       
     }
     return self;
 }

@@ -280,7 +280,10 @@
     
     pickerArray = [[NSArray arrayWithObjects:@"80",@"85",@"90",@"95",@"99",nil]retain];
     picker.tag = 100;
-    [picker selectRow:3 inComponent:0 animated:YES];
+    int idx;
+    idx = [pickerArray indexOfObject:[NSString stringWithFormat:@"%2.0f", prob]];
+    
+    [picker selectRow:idx inComponent:0 animated:YES];
     
     [actionSheet setBounds:CGRectMake(0, 0, 320, 400)];
     
@@ -291,6 +294,7 @@
 
 #pragma mark - delegate for actionsheet
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [self calcul];
 }
 
 
