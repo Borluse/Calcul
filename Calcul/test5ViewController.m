@@ -138,24 +138,22 @@
     
     double resultNormal = ABS(pourA/100-pourB/100)/pow(((pourA/100*(1-pourA/100)/(effetA-1))+(pourB/100*(1-pourB/100)/(effetB-1))),0.5);
     
-    double resultChi2 = pow((ABS((pourAS*effetA)-((effetA)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB)))-0.5),2)/((effetA)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB))+pow((ABS((pourBS*effetB)-((effetB)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB)))-0.5),2)/((effetB)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB))+pow((ABS(((1-pourAS)*effetA)-((effetA)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB)))-0.5),2)/((effetA)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB))+pow((ABS(((1-pourBS)*effetB)-((effetB)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB)))-0.5),2)/((effetB)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB));
+//    double resultChi2 = pow((ABS((pourAS*effetA)-((effetA)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB)))-0.5),2)/((effetA)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB))+pow((ABS((pourBS*effetB)-((effetB)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB)))-0.5),2)/((effetB)*((pourAS*effetA)+(pourBS*effetB))/(effetA+effetB))+pow((ABS(((1-pourAS)*effetA)-((effetA)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB)))-0.5),2)/((effetA)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB))+pow((ABS(((1-pourBS)*effetB)-((effetB)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB)))-0.5),2)/((effetB)*(((1-pourAS)*effetA)+((1-pourBS)*effetB))/(effetA+effetB));
     
     
-    
-    [chi2Text setText:[NSString stringWithFormat:@"%3.2f", resultChi2]];
   
     
     [loiNormalText setText:[NSString stringWithFormat:@"%3.2f", resultNormal]];
  
-    if (prob/100 == 0.95) p = 3.841458821;
-    else if (prob/100 == 0.99) p = 6.6348966;
-    else p = [self chiinv:1.0-prob/100 andDegree:1];
-    if ( p < resultChi2) {
-        [resultChi2Label setText: SIGNIF];
-    }
-    else{
-        [resultChi2Label setText: NON_SIGNIF];
-    }
+//    if (prob/100 == 0.95) p = 3.841458821;
+//    else if (prob/100 == 0.99) p = 6.6348966;
+//    else p = [self chiinv:1.0-prob/100 andDegree:1];
+//    if ( p < resultChi2) {
+//        [resultChi2Label setText: SIGNIF];
+//    }
+//    else{
+//        [resultChi2Label setText: NON_SIGNIF];
+//    }
     
     if (normInv(1-(1-prob/100)/2 )< resultNormal) {
         [resultNorLabel setText:SIGNIF];
@@ -212,16 +210,12 @@
     effectAText = nil;
     [effectBText release];
     effectBText = nil;
-    [resultChi2Label release];
-    resultChi2Label = nil;
     [resultNorLabel release];
     resultNorLabel = nil;
     [clearBtn release];
     clearBtn = nil;
     [resultNorLabel release];
     resultNorLabel = nil;
-    [chi2Text release];
-    chi2Text = nil;
     [loiNormalText release];
     loiNormalText = nil;
     [super viewDidUnload];
@@ -241,11 +235,9 @@
     [pourBText release];
     [effectAText release];
     [effectBText release];
-    [resultChi2Label release];
     [resultNorLabel release];
     [clearBtn release];
     [resultNorLabel release];
-    [chi2Text release];
     [loiNormalText release];
     [super dealloc];
 }
@@ -388,7 +380,6 @@
     [effectAText setText:@"150"];
     [effectBText setText:@"150"];    
     [resultNorLabel setText:@""];
-    [resultChi2Label setText:@""];
     //    [resultLabel setText:@""];
     [self initText];
 }

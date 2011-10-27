@@ -79,26 +79,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calcul/test5ViewController.m"
-         timestampString = "335649461.325669"
+         timestampString = "341401204.648781"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "268"
-         endingLineNumber = "268"
+         startingLineNumber = "260"
+         endingLineNumber = "260"
          landmarkName = "-createPickerWithId:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Calcul/test5ViewController.m"
-         timestampString = "335649461.325669"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "224"
-         endingLineNumber = "224"
-         landmarkName = "-viewDidUnload"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -107,11 +93,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calcul/test5ViewController.m"
-         timestampString = "335649461.325669"
+         timestampString = "341401204.648781"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "260"
-         endingLineNumber = "260"
+         startingLineNumber = "252"
+         endingLineNumber = "252"
          landmarkName = "-pickerFrameWithSize:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -121,11 +107,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calcul/test5ViewController.m"
-         timestampString = "335649461.325669"
+         timestampString = "341401204.648781"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "168"
-         endingLineNumber = "168"
+         startingLineNumber = "166"
+         endingLineNumber = "166"
          landmarkName = "@implementation test5ViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -149,11 +135,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calcul/test5ViewController.m"
-         timestampString = "335650053.427294"
+         timestampString = "341401204.648781"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "234"
-         endingLineNumber = "234"
+         startingLineNumber = "228"
+         endingLineNumber = "228"
          landmarkName = "-shouldAutorotateToInterfaceOrientation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -163,11 +149,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calcul/test5ViewController.m"
-         timestampString = "339852416.269944"
+         timestampString = "341401204.648781"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "567"
-         endingLineNumber = "567">
+         startingLineNumber = "558"
+         endingLineNumber = "558">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -175,11 +161,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calcul/test5ViewController.m"
-         timestampString = "339852416.269944"
+         timestampString = "341401204.648781"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "288"
-         endingLineNumber = "288"
+         startingLineNumber = "280"
+         endingLineNumber = "280"
          landmarkName = "-createPickerWithId:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -189,11 +175,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calcul/test5ViewController.m"
-         timestampString = "339852416.269944"
+         timestampString = "341401204.648781"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "285"
-         endingLineNumber = "285"
+         startingLineNumber = "277"
+         endingLineNumber = "277"
          landmarkName = "-createPickerWithId:"
          landmarkType = "5">
       </FileBreakpoint>
