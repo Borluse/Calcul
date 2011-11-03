@@ -58,6 +58,13 @@
     [clearButton release];
     [effectif release];
     [resultatCorrige release];
+    [test1Titre release];
+    [test1ele1titre release];
+    [test1ele2titre release];
+    [test1ele3titre release];
+    [test1ele4titre release];
+    [test1result1titre release];
+    [test1result2titre release];
     [super dealloc];
 }
 
@@ -99,13 +106,13 @@
 
 - (void) createPickerWithId:(NSInteger)tag{
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Validé", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"MOLETTEVALIDER", nil), nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     [actionSheet setTag:0];
     [actionSheet showFromTabBar:self.view];
     
-    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 80, 100, 0)];
+    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 80, 320, 0)];
     
     picker.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     picker.showsSelectionIndicator = YES;
@@ -317,6 +324,16 @@
     [intervalleConf setKeyboardType:UIKeyboardTypeDecimalPad];
     [pourcentageAttendu setKeyboardType:UIKeyboardTypeDecimalPad];
     
+    
+    /* localized*/
+    
+    [test1Titre setText:NSLocalizedString(@"TEST1_TITRE",nil)];
+    [test1ele1titre setText:NSLocalizedString(@"TEST1_ELEMENT1",nil)];
+    [test1ele2titre setText:NSLocalizedString(@"TEST1_ELEMENT2",nil)];  
+    [test1ele3titre setText:NSLocalizedString(@"TEST1_ELEMENT3",nil)];    
+    [test1ele4titre setText:NSLocalizedString(@"TEST1_ELEMENT4",nil)];    
+    [test1result1titre setText:NSLocalizedString(@"TEST1_RESULTAT1",nil)];
+    [test1result2titre setText:NSLocalizedString(@"TEST1_RESULTAT2", nil)];
     [self initTexts];
     
     // Do any additional setup after loading the view from its nib.
@@ -339,6 +356,20 @@
     effectif = nil;
     [resultatCorrige release];
     resultatCorrige = nil;
+    [test1Titre release];
+    test1Titre = nil;
+    [test1ele1titre release];
+    test1ele1titre = nil;
+    [test1ele2titre release];
+    test1ele2titre = nil;
+    [test1ele3titre release];
+    test1ele3titre = nil;
+    [test1ele4titre release];
+    test1ele4titre = nil;
+    [test1result1titre release];
+    test1result1titre = nil;
+    [test1result2titre release];
+    test1result2titre = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

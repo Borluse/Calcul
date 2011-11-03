@@ -65,6 +65,14 @@
     [clearButton release];
     [population release];
     [resultatCorrige release];
+    [test2Titre release];
+    [test2Ele1Titre release];
+    [test2Ele2Titre release];
+    [test2Ele3Titre release];
+    [test2Ele4Titre release];
+    [test2Result1Titre release];
+    [test2Result2Titre release];
+    [test2Result3Titre release];
     [super dealloc];
 }
 
@@ -106,13 +114,14 @@
 
 - (void) createPickerWithId:(NSInteger)tag{
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"validé", nil];
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"MOLETTEVALIDER", nil), nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     [actionSheet setTag:0];
     [actionSheet showFromTabBar:self.view];
     
-    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 80, 100, 0)];
+    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 80, 320, 0)];
     
     picker.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     picker.showsSelectionIndicator = YES;
@@ -328,6 +337,18 @@
     
     [self initTexts];
 
+    /* localized*/
+    
+    [test2Titre setText:NSLocalizedString(@"TEST2_TITRE",nil)];
+    [test2Ele1Titre setText:NSLocalizedString(@"TEST2_ELEMENT1",nil)];
+    [test2Ele2Titre setText:NSLocalizedString(@"TEST2_ELEMENT2",nil)];  
+    [test2Ele3Titre setText:NSLocalizedString(@"TEST2_ELEMENT3",nil)];    
+    [test2Ele4Titre setText:NSLocalizedString(@"TEST2_ELEMENT4",nil)];    
+    [test2Result1Titre setText:NSLocalizedString(@"TEST2_RESULTAT1",nil)];
+    [test2Result2Titre setText:NSLocalizedString(@"TEST2_RESULTAT2",nil)];
+    [test2Result3Titre setText:NSLocalizedString(@"TEST2_RESULTAT3",nil)];
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -359,6 +380,22 @@
     clearButton = nil;
     [resultatCorrige release];
     resultatCorrige = nil;
+    [test2Titre release];
+    test2Titre = nil;
+    [test2Ele1Titre release];
+    test2Ele1Titre = nil;
+    [test2Ele2Titre release];
+    test2Ele2Titre = nil;
+    [test2Ele3Titre release];
+    test2Ele3Titre = nil;
+    [test2Ele4Titre release];
+    test2Ele4Titre = nil;
+    [test2Result1Titre release];
+    test2Result1Titre = nil;
+    [test2Result2Titre release];
+    test2Result2Titre = nil;
+    [test2Result3Titre release];
+    test2Result3Titre = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

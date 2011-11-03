@@ -123,9 +123,9 @@
     double results = ABS(pourA - pourB)/sqrt(pourA * (1-pourA)/effetA +
                                              pourB * (1-pourB)/effetB);
     if (results > ABS(n)){
-        resultNorLabel.text = SIGNIF;
+        resultNorLabel.text = NSLocalizedString(@"SIGNIFICATIF", nil);
     }else{
-        resultNorLabel.text = NON_SIGNIF;
+        resultNorLabel.text = NSLocalizedString(@"NONSIGNIFICATIF", nil);
     }
     
     double pourAS = pourA / 100;
@@ -218,6 +218,16 @@
     resultNorLabel = nil;
     [loiNormalText release];
     loiNormalText = nil;
+    [test5Titre release];
+    test5Titre = nil;
+    [test5Ele1Titre release];
+    test5Ele1Titre = nil;
+    [test5Ele2Titre release];
+    test5Ele2Titre = nil;
+    [test5Ele3Titre release];
+    test5Ele3Titre = nil;
+    [AvecTitre release];
+    AvecTitre = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -239,6 +249,11 @@
     [clearBtn release];
     [resultNorLabel release];
     [loiNormalText release];
+    [test5Titre release];
+    [test5Ele1Titre release];
+    [test5Ele2Titre release];
+    [test5Ele3Titre release];
+    [AvecTitre release];
     [super dealloc];
 }
 
@@ -256,13 +271,14 @@
 
 - (void) createPickerWithId:(NSInteger)tag{
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"Set", nil];
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"MOLETTEVALIDER", nil), nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     [actionSheet setTag:0];
     [actionSheet showFromTabBar:self.view];
     
-    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 80, 100, 0)];
+    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 80, 320, 0)];
     
     picker.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     picker.showsSelectionIndicator = YES;
@@ -406,5 +422,12 @@
     [self initText];
     
     // Do any additional setup after loading the view from its nib.
+    /* localized*/
+    
+    [test5Titre setText:NSLocalizedString(@"TEST5_TITRE",nil)];
+    [test5Ele1Titre setText:NSLocalizedString(@"TEST5_ELEMENT1",nil)];
+    [test5Ele2Titre setText:NSLocalizedString(@"TEST5_ELEMENT2",nil)];  
+    [test5Ele3Titre setText:NSLocalizedString(@"TEST5_ELEMENT3",nil)];    
+    [AvecTitre setText:NSLocalizedString(@"AVECLOINORMAL",nil)];    
 }
 @end

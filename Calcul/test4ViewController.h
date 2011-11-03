@@ -25,6 +25,11 @@
     
     double prob;
     double moyA, moyB, ecartA, ecartB, effectA, effectB;
+    IBOutlet UILabel *test4Titre;
+    IBOutlet UILabel *test4Ele1Titre;
+    IBOutlet UILabel *test4Ele2Titre;
+    IBOutlet UILabel *test4Ele3Titre;
+    IBOutlet UILabel *test4Ele4Titre;
 }
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *clearBtn;
