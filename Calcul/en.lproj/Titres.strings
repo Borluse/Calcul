@@ -14,7 +14,7 @@
 "TEST1_ELEMENT3"     =  "Pourcentage attendu";
 "TEST1_ELEMENT4"     =  "Effectif";
 "TEST1_RESULTAT1"    =  "Taille d'échantillon nécessaire";
-"TEST1_RESULTAT2"    =  "Corrigé par le facteur d’exhaustivité"
+"TEST1_RESULTAT2"    =  "Corrigé par le facteur d’exhaustivité";
 
 /*TEST2*/
 "TEST2_TITRE"        =  "Précision d'un résultat en %";

@@ -325,7 +325,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{219, 170}, {90, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="797733011"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUITag">21</int>
@@ -403,6 +403,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{22, 291}, {289, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
