@@ -34,6 +34,17 @@
     
     
     UIBarButtonItem *clearButton;
+    IBOutlet UILabel *test3Titre;
+    
+    IBOutlet UILabel *test3Ele1Titre;
+    
+    IBOutlet UILabel *test3Ele2Titre;
+    IBOutlet UILabel *test3Ele3Titre;
+    IBOutlet UILabel *test3Ele4Titre;
+    IBOutlet UILabel *test3Ele5Titre;
+    IBOutlet UILabel *test3Resultat1Titre;
+    IBOutlet UILabel *test3Resultat2Titre;
+    IBOutlet UILabel *test3Resultat3Titre;
 }
 @property (nonatomic, retain) IBOutlet UITextField *seuil;
 
