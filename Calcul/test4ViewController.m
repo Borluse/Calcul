@@ -19,9 +19,9 @@
     double norme = normInv(PROP(prob));
     
     if (ABS(moyA-moyB)/sqrt((ecartA * ecartA)/effectA + (ecartB * ecartB)/effectB)>ABS(norme)){
-        [resultLabel setText:@"Significatif"];
+        [resultLabel setText:NSLocalizedString(@"SIGNIFICATIF", nil)];
     }else{
-        [resultLabel setText:@"Ecart non significatif"];
+        [resultLabel setText:NSLocalizedString(@"NONSIGNIFICATIF", nil)];
     }
 }
 
@@ -78,6 +78,16 @@
     effectifTextA = nil;
     [effectifTextB release];
     effectifTextB = nil;
+    [test4Titre release];
+    test4Titre = nil;
+    [test4Ele1Titre release];
+    test4Ele1Titre = nil;
+    [test4Ele2Titre release];
+    test4Ele2Titre = nil;
+    [test4Ele3Titre release];
+    test4Ele3Titre = nil;
+    [test4Ele4Titre release];
+    test4Ele4Titre = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -99,6 +109,11 @@
     [effectifTextA release];
     [effectifTextA release];
     [effectifTextB release];
+    [test4Titre release];
+    [test4Ele1Titre release];
+    [test4Ele2Titre release];
+    [test4Ele3Titre release];
+    [test4Ele4Titre release];
     [super dealloc];
 }
 - (IBAction)clearBtnClicked:(id)sender {
@@ -119,13 +134,14 @@
 
 - (void) createPickerWithId:(NSInteger)tag{
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"validé", nil];
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"MOLETTEVALIDER", nil), nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     [actionSheet setTag:0];
     [actionSheet showFromTabBar:self.view];
     
-    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 80, 100, 0)];
+    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 80, 320, 0)];
     
     picker.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     picker.showsSelectionIndicator = YES;
@@ -300,6 +316,17 @@
     [effectifTextA setKeyboardType:UIKeyboardTypeDecimalPad];
     [effectifTextB setKeyboardType:UIKeyboardTypeDecimalPad];
     [self initText];
+    
+    
+    /* localized*/
+    
+    [test4Titre setText:NSLocalizedString(@"TEST4_TITRE",nil)];
+    [test4Ele1Titre setText:NSLocalizedString(@"TEST4_ELEMENT1",nil)];
+    [test4Ele2Titre setText:NSLocalizedString(@"TEST4_ELEMENT2",nil)];  
+    [test4Ele3Titre setText:NSLocalizedString(@"TEST4_ELEMENT3",nil)];    
+    [test4Ele4Titre setText:NSLocalizedString(@"TEST4_ELEMENT4",nil)];    
+    
+    
     
     // Do any additional setup after loading the view from its nib.
 }

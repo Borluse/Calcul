@@ -35,6 +35,11 @@
     
     double prob;
     double pourA, pourB, effetA, effetB;
+    IBOutlet UILabel *test5Titre;
+    IBOutlet UILabel *test5Ele1Titre;
+    IBOutlet UILabel *test5Ele2Titre;
+    IBOutlet UILabel *test5Ele3Titre;
+    IBOutlet UILabel *AvecTitre;
 }
 
 

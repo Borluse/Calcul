@@ -28,6 +28,13 @@
     IBOutlet UITextField *effectif;
 
     IBOutlet UIBarButtonItem *clearButton;
+    IBOutlet UILabel *test1Titre;
+    IBOutlet UILabel *test1ele1titre;
+    IBOutlet UILabel *test1ele2titre;
+    IBOutlet UILabel *test1ele3titre;
+    IBOutlet UILabel *test1ele4titre;
+    IBOutlet UILabel *test1result1titre;
+    IBOutlet UILabel *test1result2titre;
 }
 @property (nonatomic, retain) IBOutlet UITextField *resultat;
 

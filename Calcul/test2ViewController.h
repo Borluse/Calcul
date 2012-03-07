@@ -29,6 +29,14 @@
     IBOutlet UITextField *population;
     
     IBOutlet UIBarButtonItem *clearButton;
+    IBOutlet UILabel *test2Titre;
+    IBOutlet UILabel *test2Ele1Titre;
+    IBOutlet UILabel *test2Ele2Titre;
+    IBOutlet UILabel *test2Ele3Titre;
+    IBOutlet UILabel *test2Ele4Titre;
+    IBOutlet UILabel *test2Result1Titre;
+    IBOutlet UILabel *test2Result2Titre;
+    IBOutlet UILabel *test2Result3Titre;
 }
 @property (nonatomic, retain) IBOutlet UITextField *resultat;
 @property (nonatomic, retain) IBOutlet UITextField *soitEntre;

@@ -68,6 +68,15 @@
     [clearButton release];
     [population release];
     [resultatCorrige release];
+    [test3Titre release];
+    [test3Ele1Titre release];
+    [test3Ele2Titre release];
+    [test3Ele3Titre release];
+    [test3Ele4Titre release];
+    [test3Ele5Titre release];
+    [test3Resultat1Titre release];
+    [test3Resultat2Titre release];
+    [test3Resultat3Titre release];
     [super dealloc];
 }
 
@@ -97,13 +106,14 @@
 
 - (void) createPickerWithId:(NSInteger)tag{
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"validé", nil];
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"MOLETTEVALIDER", nil), nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     [actionSheet setTag:0];
     [actionSheet showFromTabBar:self.view];
     
-    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 80, 100, 0)];
+    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 80, 320, 0)];
     
     picker.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     picker.showsSelectionIndicator = YES;
@@ -269,6 +279,21 @@
     [effectif setKeyboardType:UIKeyboardTypeDecimalPad];
     [self initText];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    
+    /* localized*/
+    
+    [test3Titre setText:NSLocalizedString(@"TEST3_TITRE",nil)];
+    [test3Ele1Titre setText:NSLocalizedString(@"TEST3_ELEMENT1",nil)];
+    [test3Ele2Titre setText:NSLocalizedString(@"TEST3_ELEMENT2",nil)];  
+    [test3Ele3Titre setText:NSLocalizedString(@"TEST3_ELEMENT3",nil)];    
+    [test3Ele4Titre setText:NSLocalizedString(@"TEST3_ELEMENT4",nil)];    
+    [test3Ele5Titre setText:NSLocalizedString(@"TEST3_ELEMENT5",nil)];  
+    [test3Resultat1Titre setText:NSLocalizedString(@"TEST3_RESULTAT1",nil)];
+    [test3Resultat2Titre setText:NSLocalizedString(@"TEST3_RESULTAT2",nil)];
+    [test3Resultat3Titre setText:NSLocalizedString(@"TEST3_RESULTAT3",nil)];
+    
 }
 
 - (void)viewDidUnload
@@ -285,6 +310,24 @@
     population = nil;
     [resultatCorrige release];
     resultatCorrige = nil;
+    [test3Titre release];
+    test3Titre = nil;
+    [test3Ele1Titre release];
+    test3Ele1Titre = nil;
+    [test3Ele2Titre release];
+    test3Ele2Titre = nil;
+    [test3Ele3Titre release];
+    test3Ele3Titre = nil;
+    [test3Ele4Titre release];
+    test3Ele4Titre = nil;
+    [test3Ele5Titre release];
+    test3Ele5Titre = nil;
+    [test3Resultat1Titre release];
+    test3Resultat1Titre = nil;
+    [test3Resultat2Titre release];
+    test3Resultat2Titre = nil;
+    [test3Resultat3Titre release];
+    test3Resultat3Titre = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
