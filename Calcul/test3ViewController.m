@@ -207,6 +207,13 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSArray * allTextField = [self.view subviews];
+    for (NSObject * ui in allTextField) {
+        if ([ui class] == [UITextField class]){
+            UITextField * at = (UITextField *) ui;
+            at.text = [at.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
+        }
+    }   
 	//for (UITouch *touch in touches){
     if ([moyenne isFirstResponder]) [moyenne resignFirstResponder];
     if ([ecartType isFirstResponder]) [ecartType resignFirstResponder];

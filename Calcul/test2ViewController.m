@@ -291,14 +291,17 @@
         [population resignFirstResponder];
     }
     if (![effectif.text isEqualToString:@""]){
+        effectif.text = [effectif.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
         effect = [effectif.text intValue];
     }
     [effectif setText:[NSString stringWithFormat:@"%2.0f", effect]];
     if (![pourcentageObserve.text isEqualToString:@""]){
+        pourcentageObserve.text = [pourcentageObserve.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
         pourcentage = [pourcentageObserve.text doubleValue];
     }
     [pourcentageObserve setText:[NSString stringWithFormat:@"%2.1f", pourcentage]];
     if (![population.text isEqualToString:@""]){
+        population.text = [population.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
         populationNum = [population.text doubleValue];
     }
     [population setText:[NSString stringWithFormat:@"%2.0f", populationNum]];

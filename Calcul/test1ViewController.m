@@ -278,10 +278,12 @@
         [effectif resignFirstResponder];
     }
     if (![pourcentageAttendu.text isEqualToString:@""]){
+        pourcentageAttendu.text = [pourcentageAttendu.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
         pourcentageAttenduNum = [pourcentageAttendu.text doubleValue];
     }
     [pourcentageAttendu setText:[NSString stringWithFormat:@"%2.1f",pourcentageAttenduNum]];
     if (![intervalleConf.text isEqualToString:@"" ]){
+        intervalleConf.text = [intervalleConf.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
         intervalleConfNum = [intervalleConf.text floatValue];
     }
     [intervalleConf setText:[NSString stringWithFormat:@"%2.1f", intervalleConfNum]];

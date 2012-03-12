@@ -84,8 +84,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "260"
          endingLineNumber = "260"
-         landmarkName = "-createPickerWithId:"
-         landmarkType = "5">
+         landmarkName = "@implementation test5ViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -98,7 +98,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "252"
          endingLineNumber = "252"
-         landmarkName = "-pickerFrameWithSize:"
+         landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -140,7 +140,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "228"
          endingLineNumber = "228"
-         landmarkName = "-shouldAutorotateToInterfaceOrientation:"
+         landmarkName = "-viewDidUnload"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -149,11 +149,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Calcul/test5ViewController.m"
-         timestampString = "341401204.648781"
+         timestampString = "353258600.150082"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "558"
-         endingLineNumber = "558">
+         startingLineNumber = "565"
+         endingLineNumber = "565">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -208,11 +208,11 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "186"
          endingLineNumber = "186"
-         landmarkName = "-textFieldShouldBeginEditing:"
+         landmarkName = "-pickerView:didSelectRow:inComponent:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
@@ -279,6 +279,62 @@
          startingLineNumber = "18"
          endingLineNumber = "18"
          landmarkName = "-calcul"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Calcul/test1ViewController.m"
+         timestampString = "353257290.366568"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "271"
+         endingLineNumber = "271"
+         landmarkName = "-touchesBegan:withEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Calcul/test3ViewController.m"
+         timestampString = "353258228.070422"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "211"
+         endingLineNumber = "211"
+         landmarkName = "-touchesBegan:withEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Calcul/test3ViewController.m"
+         timestampString = "353258332.315744"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "27"
+         endingLineNumber = "27"
+         landmarkName = "-calcul"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Calcul/test3ViewController.m"
+         timestampString = "353258518.166"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "213"
+         endingLineNumber = "213"
+         landmarkName = "-touchesBegan:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
